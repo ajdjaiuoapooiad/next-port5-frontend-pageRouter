@@ -63,12 +63,12 @@ export default function PostsListPage({posts}: Props) {
         </div>
 
         <div className='col-span-4 p-5'>
+          <div className="grid grid-cols-3">
             {posts.map((post) => (
-              <div key={post.id} className="p-5 border my-3" >
-                <Link href={`posts/${post.id}`} >
-                  <h2>{post.title}</h2>
-                </Link>
-                <p>{post.content}</p>
+              <Link href={`posts/${post.id}`} >
+              <div key={post.id} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl" >
+                <h2 className="hover:text-blue-500">{post.title}</h2>
+                <p className="hover:text-blue-500">Status:{post.content}</p>
 
                 <Button
                   onClick={() => handleUpdate(post)}
@@ -81,7 +81,9 @@ export default function PostsListPage({posts}: Props) {
                   Delete
                 </Button>
               </div>
+              </Link>
             ))}
+          </div>
           </div>
       </div>
 

@@ -1,5 +1,7 @@
 import Sidebar from "@/components/Sidebar";
+import { Button } from "@/components/ui/button";
 import { Post } from "@/utils/types";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 
 
@@ -44,6 +46,24 @@ const DetailPage = ({post}: Props) => {
     return <div>Loading...</div>;
   }
 
+  const handleUpdate = async (post: Post) => {
+    router.push(`/edit-post/${post.id}`);
+  };
+
+  // Delete function
+  const handleDelete = async (id: any) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3001/api/v1/posts/${id}`
+      );
+
+      router.refresh();
+    } catch (error) {
+      console.error(error);
+      alert("Error deleting post");
+    }
+  };
+
   return (
     <div className='grid grid-cols-5'>
       <div className='col-span-1'> 
@@ -51,9 +71,20 @@ const DetailPage = ({post}: Props) => {
       </div>
 
       <div className='col-span-4 p-5'>
-        <div className="">
+        <div className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl">
           <h1>{post.title}</h1>
-          <p >{post.content}</p>
+          <p >Status:{post.content}</p>
+
+          <Button
+            onClick={() => handleUpdate(post)}
+          >
+            Edit
+          </Button>
+          <Button
+            onClick={() => handleDelete(post.id)}
+          >
+            Delete
+          </Button>
         </div>
       </div>
     </div>
