@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Post } from "@/utils/types";
 import axios from "axios";
@@ -56,34 +57,33 @@ export default function PostsListPage({posts}: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div >
-        <h2>Rails & Next.js Blog</h2>
-        <Link href="/create-post">
-          Create New Post
-        </Link>
-
-        <div>
-          {posts.map((post) => (
-            <div key={post.id} className="p-5 border" >
-              <Link href={`posts/${post.id}`} >
-                <h2>{post.title}</h2>
-              </Link>
-              <p>{post.content}</p>
-
-              <Button
-                onClick={() => handleUpdate(post)}
-              >
-                Edit
-              </Button>
-              <Button
-                onClick={() => handleDelete(post.id)}
-              >
-                Delete
-              </Button>
-            </div>
-          ))}
+      <div className='grid grid-cols-5'>
+        <div className='col-span-1'> 
+          <Sidebar />
         </div>
-      </div>
+
+        <div className='col-span-4'>
+            {posts.map((post) => (
+              <div key={post.id} className="p-5 border" >
+                <Link href={`posts/${post.id}`} >
+                  <h2>{post.title}</h2>
+                </Link>
+                <p>{post.content}</p>
+
+                <Button
+                  onClick={() => handleUpdate(post)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => handleDelete(post.id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            ))}
+          </div>
+        </div>
 
     </>
   )

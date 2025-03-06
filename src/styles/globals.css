@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/* あとから追加されたやつ　shadcnui */
+@layer base {  
   :root {
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
