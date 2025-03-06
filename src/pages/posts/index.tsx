@@ -68,7 +68,7 @@ export default function PostsListPage({posts}: Props) {
               <Link href={`posts/${post.id}`} >
               <div key={post.id} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl" >
                 <h2 className="hover:text-blue-500">{post.title}</h2>
-                <p className="hover:text-blue-500">Status:{post.content}</p>
+                <p className="hover:text-blue-500">Status : {post.content}</p>
 
                 <Button
                   onClick={() => handleUpdate(post)}
