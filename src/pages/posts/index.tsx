@@ -39,8 +39,8 @@ export default function PostsListPage({posts}: Props) {
       const response = await axios.delete(
         `http://localhost:3001/api/v1/posts/${id}`
       );
+      router.push('/posts')
 
-      router.refresh();
     } catch (error) {
       console.error(error);
       alert("Error deleting post");
