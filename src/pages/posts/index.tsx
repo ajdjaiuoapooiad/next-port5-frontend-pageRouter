@@ -70,12 +70,11 @@ export default function PostsListPage({posts}: Props) {
               </Link>
               <p>{post.content}</p>
 
-                <Button
-                  onClick={() => handleUpdate(post)}
-                >
-                  Edit
-                </Button>
-             
+              <Button
+                onClick={() => handleUpdate(post)}
+              >
+                Edit
+              </Button>
               <Button
                 onClick={() => handleDelete(post.id)}
               >
