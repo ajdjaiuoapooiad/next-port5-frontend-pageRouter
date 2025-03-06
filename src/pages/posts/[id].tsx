@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar";
 import { Post } from "@/utils/types";
 import { useRouter } from "next/navigation";
 
@@ -44,9 +45,17 @@ const DetailPage = ({post}: Props) => {
   }
 
   return (
-    <div >
-      <h1>{post.title}</h1>
-      <p >{post.content}</p>
+    <div className='grid grid-cols-5'>
+      <div className='col-span-1'> 
+        <Sidebar />
+      </div>
+
+      <div className='col-span-4 p-5'>
+        <div className="">
+          <h1>{post.title}</h1>
+          <p >{post.content}</p>
+        </div>
+      </div>
     </div>
   );
 }

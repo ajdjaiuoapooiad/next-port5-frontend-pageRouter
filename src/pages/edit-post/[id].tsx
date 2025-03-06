@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Post } from "@/utils/types";
@@ -44,26 +45,35 @@ export default function EditPost({ post }: Props) {
   };
 
   return (
-    <div>
-      <h1 >ブログ編集</h1>
-      <form  onSubmit={handleSubmit}>
-        <label >Title:</label>
-        <Input
-          
-          type="text"
-          value={title}
-          onChange={handleTitleChange}
-        />
-        <label >Content:</label>
-        <Input
-          value={content}
-          onChange={handleContentChange}
-        />
-        <Button  type="submit">
-          Update
-        </Button>
-      </form>
+    <div className='grid grid-cols-5'>
+      <div className='col-span-1'> 
+        <Sidebar />
+      </div>
+
+      <div className='col-span-4 p-5'>
+        <div className="p-5 m-5 border w-1/2">
+          <h1 >ブログ編集</h1>
+          <form  onSubmit={handleSubmit}>
+            <label >Title:</label>
+            <Input
+              type="text"
+              value={title}
+              onChange={handleTitleChange}
+            />
+            <label >Content:</label>
+            <Input
+              type="text"
+              value={content}
+              onChange={handleContentChange}
+            />
+            <Button  type="submit">
+              Update
+            </Button>
+          </form>
+        </div>
+      </div>
     </div>
+
   );
 }
 

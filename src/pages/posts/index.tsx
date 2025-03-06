@@ -62,9 +62,9 @@ export default function PostsListPage({posts}: Props) {
           <Sidebar />
         </div>
 
-        <div className='col-span-4'>
+        <div className='col-span-4 p-5'>
             {posts.map((post) => (
-              <div key={post.id} className="p-5 border" >
+              <div key={post.id} className="p-5 border my-3" >
                 <Link href={`posts/${post.id}`} >
                   <h2>{post.title}</h2>
                 </Link>
@@ -83,7 +83,7 @@ export default function PostsListPage({posts}: Props) {
               </div>
             ))}
           </div>
-        </div>
+      </div>
 
     </>
   )
