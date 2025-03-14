@@ -72,7 +72,7 @@ export default function PostsListPage({posts}: Props) {
                 <h2 className="hover:text-blue-500">{post.title}</h2>
                 <p className="hover:text-blue-500">Status : {post.status}</p>
 
-                <span>
+                <span suppressHydrationWarning>
                   <Link href={`edit-post/${post.id}/`} >
                   <Button
                     className="hover:bg-gray-100 hover:text-black"

@@ -19,16 +19,17 @@ const ScrapePostsList = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(url);
+    const formData = new FormData();
+    formData.append('url', url);
 
     // fetch APIを使ってサーバーにリクエストを送信
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/jobs/', url, {
+      const response = await axios.post('http://127.0.0.1:8000/api/jobs/ ', formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // FormDataを送信する場合に必要
         },
       });
-      setResponseData(response.data); // レスポンスデータをステートに設定
-      console.log(responseData);
+      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
@@ -52,7 +53,7 @@ const ScrapePostsList = () => {
                 <label>URL:</label>
                 <Input
                   type="text"
-                  name="title"
+                  name="url"
                   onChange={(e) => setUrl(e.target.value)}
                 />
               
