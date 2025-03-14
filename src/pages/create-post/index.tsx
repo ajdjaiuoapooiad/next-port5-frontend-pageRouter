@@ -45,7 +45,7 @@ export default function CreatePost() {
             name="title"
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label >Content:</label>
+          <label >Status:</label>
           <Input
             type="text"
             name="content"
