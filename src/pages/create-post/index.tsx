@@ -15,10 +15,11 @@ export default function CreatePost() {
     console.log(title, content);
 
     try{
-      await axios.post('http://localhost:3001/api/v1/posts', {
+      await axios.post('http://127.0.0.1:8000/api/device/', {
         title: title,
-        content: content,
+        status: content,
       })
+      // window.alert('送信が完了しました。');
       router.push('/posts')
     }catch(error){
       alert('投稿に失敗しました')

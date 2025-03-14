@@ -12,7 +12,7 @@ type Props = {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://localhost:3001/api/v1/posts");
+  const res = await fetch("http://127.0.0.1:8000/api/device/");
   const posts = await res.json();
   console.log(posts);
   
@@ -37,8 +37,9 @@ export default function PostsListPage({posts}: Props) {
   const handleDelete = async (id: any) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3001/api/v1/posts/${id}`
+        `http://127.0.0.1:8000/api/device/${id}/`
       );
+      window.alert('削除が完了しました。');
       router.push('/posts')
 
     } catch (error) {
@@ -68,7 +69,7 @@ export default function PostsListPage({posts}: Props) {
               <Link href={`posts/${post.id}`} >
               <div key={post.id} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl" >
                 <h2 className="hover:text-blue-500">{post.title}</h2>
-                <p className="hover:text-blue-500">Status : {post.content}</p>
+                <p className="hover:text-blue-500">Status : {post.status}</p>
 
                 <Button
                   onClick={() => handleUpdate(post)}

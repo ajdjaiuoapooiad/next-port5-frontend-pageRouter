@@ -14,7 +14,7 @@ type Props = {
 
 export default function EditPost({ post }: Props) {
   const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.content);
+  const [content, setContent] = useState(post.status);
   const router = useRouter();
 
   const handleTitleChange = (e: any) => {
@@ -30,10 +30,10 @@ export default function EditPost({ post }: Props) {
 
     try {
       const response = await axios.put(
-        `http://localhost:3001/api/v1/posts/${post.id}`,
+        `http://127.0.0.1:8000/api/device/${post.id}/`,
         {
           title: title,
-          content: content,
+          status: content,
         }
       );
       router.push("/posts");
@@ -79,7 +79,7 @@ export default function EditPost({ post }: Props) {
 
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
-  const res = await fetch(`http://localhost:3001/api/v1/posts/${id}`);
+  const res = await fetch(`http://127.0.0.1:8000/api/device/${id}/`);
   const post = await res.json();
 
   return {
