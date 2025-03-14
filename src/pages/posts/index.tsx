@@ -27,12 +27,7 @@ export async function getStaticProps() {
 
 export default function PostsListPage({posts}: Props) {
   const router = useRouter();
-
-  // Update function
-  const handleUpdate = async (post: Post) => {
-    router.push(`/edit-post/${post.id}`);
-  };
-
+  
   // Delete function
   const handleDelete = async (id: any) => {
     try {
@@ -76,12 +71,16 @@ export default function PostsListPage({posts}: Props) {
                 <h2 className="hover:text-blue-500">{post.title}</h2>
                 <p className="hover:text-blue-500">Status : {post.status}</p>
 
+                <Link href={`/edit-post/${post.id}/`}>
+                  <Button
+                    className="hover:bg-gray-100 hover:text-black"
+                  >
+                    Edit
+                  </Button>
+                </Link>
+
                 <Button
-                  onClick={() => handleUpdate(post)}
-                >
-                  Edit
-                </Button>
-                <Button
+                  className="hover:bg-gray-100 hover:text-black"
                   onClick={() => handleDelete(post.id)}
                 >
                   Delete

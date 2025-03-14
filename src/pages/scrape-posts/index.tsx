@@ -14,28 +14,31 @@ type Props = {
 const ScrapePostsList = () => {
   const [ url,setUrl ] = useState('')
   const router = useRouter()
-
+  const [responseData, setResponseData] = useState(null);
+ 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(url);
 
-    try{
-      fetch('http://127.0.0.1:8000/api/jobs/', {
-        method: 'POST',
+    // fetch APIを使ってサーバーにリクエストを送信
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/jobs/', url, {
         headers: {
-          'Content-Type': 'application/json', // 送信するデータの種類
-          // 必要に応じて他のヘッダーを追加
+          'Content-Type': 'multipart/form-data', // FormDataを送信する場合に必要
         },
-        body: JSON.stringify(url), // 送信するデータ
-      })
-      // window.alert('送信が完了しました。');
-      router.push('/scrape-posts')
-    }catch(error){
-      alert('投稿に失敗しました')
+      });
+      setResponseData(response.data); // レスポンスデータをステートに設定
+      console.log(responseData);
+    } catch (err) {
+      console.error(err);
     }
   }
+      
+  
+
 
   return (
+    
     <div className='grid grid-cols-5'>
         <div className='col-span-1'> 
           <Sidebar />
@@ -57,6 +60,30 @@ const ScrapePostsList = () => {
                   Submit
                 </Button>
               </form>
+
+
+              <div>
+                <h1>出力結果</h1>
+                {/* {posts.length > 0 ? (
+                  {posts.map((post: any, index: any) => (
+                    <div key={index}>
+                      <h3>{post.title}</h3>
+                      <p>{post.company}</p>
+                    </div>
+                  ))}
+                ): void { 
+                }} */}
+                 {responseData && (
+                    <div>
+                      <h2>レスポンスデータ:</h2>
+                      <pre>{JSON.stringify(responseData, null, 2)}</pre>
+                    </div>
+                  )}
+              
+                
+                
+      
+              </div>
           </div>
 
         </div>
