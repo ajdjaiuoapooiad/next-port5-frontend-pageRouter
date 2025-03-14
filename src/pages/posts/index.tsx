@@ -5,7 +5,7 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import Swal from 'sweetalert2';
 
 type Props = {
   posts: Post[]
@@ -39,7 +39,12 @@ export default function PostsListPage({posts}: Props) {
       const response = await axios.delete(
         `http://127.0.0.1:8000/api/device/${id}/`
       );
-      window.alert('削除が完了しました。');
+      // window.alert('削除が完了しました。');
+      Swal.fire({
+        icon: 'success',
+        title: '削除完了',
+        text: '削除が完了しました。',
+      });
       router.push('/posts')
 
     } catch (error) {
