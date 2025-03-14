@@ -49,7 +49,7 @@ const ScrapePostsList = () => {
 
         <div className='col-span-4 p-5'>
 
-          <div className="p-5 m-5 border w-1/2">
+          <div className="p-5 my-5 m-5 border w-2/3">
               <h1>ScrapeCreatePage</h1>
               <form  onSubmit={handleSubmit}>
                 <label>URL:</label>
@@ -64,8 +64,9 @@ const ScrapePostsList = () => {
                 </Button>
               </form>
 
+          </div>
 
-              <div>
+              <div className='p-5 m-5 border'>
                 <h1>出力結果</h1>
                 {/* {posts.length > 0 ? (
                   {posts.map((post: any, index: any) => (
@@ -79,7 +80,16 @@ const ScrapePostsList = () => {
                  {responseData && (
                     <div>
                       <h2>レスポンスデータ:</h2>
-                      <pre>{JSON.stringify(responseData, null, 2)}</pre>
+                      {responseData.map((job: Job, index: number) => (
+                        <div key={index} className='border p-5 m-5'>
+                          <h2>id: {index + 1}:</h2>
+                          <h3>{job.title}</h3>
+                          <p>会社名: {job.company}</p>
+                          <p>勤務地: {job.place}</p>
+                        </div>
+                      ))
+                      } 
+  
                     </div>
                   )}
               
@@ -87,7 +97,7 @@ const ScrapePostsList = () => {
                 
       
               </div>
-          </div>
+       
 
         </div>
     </div>
