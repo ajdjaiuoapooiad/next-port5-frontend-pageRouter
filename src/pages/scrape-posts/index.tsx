@@ -29,7 +29,9 @@ const ScrapePostsList = () => {
           'Content-Type': 'multipart/form-data', // FormDataを送信する場合に必要
         },
       });
-      console.log(response.data);
+      const jobs = response.data.jobs
+      setResponseData(jobs);
+      console.log(jobs);
     } catch (err) {
       console.error(err);
     }
