@@ -22,6 +22,16 @@ const links: NavLink[] = [
     label: 'stats',
     icon: <AreaChart />,
   },
+  {
+    href: '/scrape-posts',
+    label: 'scrape Jobs',
+    icon: <AreaChart />,
+  },
+  {
+    href: '/scrape-createPosts',
+    label: 'Scrape&Create Jobs',
+    icon: <AreaChart />,
+  },
 ];
 
 export default links;
