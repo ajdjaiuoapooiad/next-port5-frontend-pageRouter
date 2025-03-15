@@ -2,7 +2,8 @@ import Sidebar from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { Post } from "@/utils/types";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
+
 
 
 type Props = {
@@ -40,11 +41,12 @@ export async function getStaticProps({params}: {params: {id: string}}) {
   }
 
 const DetailPage = ({post}: Props) => {
-    const router = useRouter();
+  const router = useRouter();
 
   if (router.isFallback) {
     return <div>Loading...</div>;
   }
+
 
   const handleUpdate = async (post: Post) => {
     router.push(`/edit-post/${post.id}`);

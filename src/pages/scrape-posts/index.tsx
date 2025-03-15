@@ -14,7 +14,7 @@ type Props = {
 const ScrapePostsList = () => {
   const [ url,setUrl ] = useState('')
   const router = useRouter()
-  const [responseData, setResponseData] = useState(null);
+  const [responseData, setResponseData] = useState([]);
  
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
