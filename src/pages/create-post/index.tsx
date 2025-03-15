@@ -6,18 +6,20 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 export default function CreatePost() {
-  const [ title,setTitle ] = useState('')
-  const [ content,setContent ] = useState('')
+  const [ company,setCompany ] = useState('')
+  const [ place,setPlace ] = useState('')
+  const [ status,setStatus ] = useState('')
   const router = useRouter()
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(title, content);
+    console.log(company, place, status);
 
     try{
       await axios.post('http://127.0.0.1:8000/api/device/', {
-        title: title,
-        status: content,
+        company: company,
+        place: place,
+        status: status
       })
       // window.alert('送信が完了しました。');
       router.push('/posts')
@@ -39,17 +41,23 @@ export default function CreatePost() {
       <div className="p-5 m-5 border w-1/2">
         <h1 >ブログ新規登録</h1>
         <form  onSubmit={handleSubmit}>
-          <label>Title:</label>
+          <label>Company:</label>
           <Input
             type="text"
-            name="title"
-            onChange={(e) => setTitle(e.target.value)}
+            name="company"
+            onChange={(e) => setCompany(e.target.value)}
+          />
+          <label >Place:</label>
+          <Input
+            type="text"
+            name="place"
+            onChange={(e) => setPlace(e.target.value)}
           />
           <label >Status:</label>
           <Input
             type="text"
-            name="content"
-            onChange={(e) => setContent(e.target.value)}
+            name="status"
+            onChange={(e) => setStatus(e.target.value)}
           />
           <Button type="submit">
             Submit
