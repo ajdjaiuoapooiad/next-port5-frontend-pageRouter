@@ -49,7 +49,7 @@ const ScrapePostsList = () => {
 
         <div className='col-span-4 p-5'>
 
-          <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400">
+          <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400 rounded-lg">
               <h1>ScrapePage</h1>
               <p>このページでは、URLを入力してリンク先の求人を一括で取得できます。</p>
               <form  onSubmit={handleSubmit}>
@@ -68,7 +68,7 @@ const ScrapePostsList = () => {
 
           </div>
 
-              <div className='p-5 m-5 border bg-gray-400'>
+              <div className='p-5 m-5 border bg-gray-400 rounded-lg'>
                 <h1>出力結果</h1>
                 {/* {posts.length > 0 ? (
                   {posts.map((post: any, index: any) => (
@@ -83,29 +83,29 @@ const ScrapePostsList = () => {
                     <div>
                       <h2>レスポンスデータ:</h2>
     
-                        <div className="overflow-x-auto">
-                          <table className="min-w-full divide-y divide-gray-200">
+                        <div className="overflow-x-auto rounded-lg">
+                          <table className="min-w-full divide-y divide-gray-200 ">
                             <thead className="bg-gray-50">
                               <tr>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left  font-bold text-gray-500 uppercase tracking-wider">
                                   id
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
                                   title
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
                                   company
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
+                                  place
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
                                   company
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
                                   company
                                 </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                  company
-                                </th>
-                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <th scope="col" className="px-6 py-3 text-left font-bold text-gray-500 uppercase tracking-wider">
                                   company
                                 </th>
                                 
@@ -124,7 +124,7 @@ const ScrapePostsList = () => {
                                   {job.company}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                  {job.company}
+                                  {job.place}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                   {job.company}
