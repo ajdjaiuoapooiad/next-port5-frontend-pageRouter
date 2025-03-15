@@ -18,7 +18,7 @@ const ScrapeCreatePage = () => {
   
       // fetch APIを使ってサーバーにリクエストを送信
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/jobs/ ', formData, {
+        const response = await axios.post('http://127.0.0.1:8000/api/jobs-create/', formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // FormDataを送信する場合に必要
           },
@@ -41,6 +41,7 @@ const ScrapeCreatePage = () => {
         <div className='col-span-4 p-5'>
             <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400">
                 <h1>ScrapeCreatePage</h1>
+                <p>このページでは、URLを入力してリンク先の求人を一括で登録できます。</p>
                 <form  onSubmit={handleSubmit}>
                   <label>URL:</label>
                   <Input
