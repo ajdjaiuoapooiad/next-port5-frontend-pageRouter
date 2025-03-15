@@ -12,17 +12,25 @@ type Props = {
 }
 
 export async function getStaticProps() {
-  const res = await fetch("http://127.0.0.1:8000/api/device/");
-  const posts = await res.json();
-  console.log(posts);
-  
-
-  return {
-    props: {
-      posts,
-    },
-    revalidate: 60 * 60 * 24, // 24 hours
-  };
+  try {
+    const res = await fetch("http://127.0.0.1:8000/api/device/");
+    const posts = await res.json();
+    console.log(posts);
+    
+    return {
+      props: {
+        posts,
+      },
+      revalidate: 60 * 60 * 24, // 24 hours
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        posts: [],
+      },
+    };
+  }
 }
 
 export default function PostsListPage({posts}: Props) {
@@ -67,21 +75,21 @@ export default function PostsListPage({posts}: Props) {
         <div className='col-span-4 p-5'>
           <div className="grid grid-cols-3">
             {posts.map((post) => (
-              <Link href={`posts/${post.id}`} >
-              <div key={post.id} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl bg-gray-100 hover:bg-gray-300 rounded-lg" >
+           
+              <div  key={post.id} onClick={() => router.push(`posts/${post.id}`)} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl bg-gray-100 hover:bg-gray-300 rounded-lg" >
                 <p className="hover:text-blue-500">会社名: {post.company}</p>
                 <p className="hover:text-blue-500">勤務地: {post.place}</p>
                 <p className="hover:text-blue-500">応募状況: {post.status}</p>
 
-                <span suppressHydrationWarning>
-                  <Link href={`edit-post/${post.id}/`} >
+
+                <a href={`/edit-post/${post.id}/`}>
                   <Button
                     className="hover:bg-gray-100 hover:text-black"
                   >
                     Edit
                   </Button>
-                  </Link>
-                </span>
+                </a>
+ 
                 <Button
                   className="hover:bg-gray-100 hover:text-black"
                   onClick={() => handleDelete(post.id)}
@@ -89,7 +97,7 @@ export default function PostsListPage({posts}: Props) {
                   Delete
                 </Button>
               </div>
-              </Link>
+     
             ))}
           </div>
           </div>
