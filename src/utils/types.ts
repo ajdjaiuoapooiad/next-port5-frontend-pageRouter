@@ -1,6 +1,7 @@
 export interface Post {
     id: string;
-    title: string;
+    company: string;
+    place: string;
     status: string;
 }
 

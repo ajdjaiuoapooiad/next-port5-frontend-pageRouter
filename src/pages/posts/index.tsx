@@ -69,8 +69,9 @@ export default function PostsListPage({posts}: Props) {
             {posts.map((post) => (
               <Link href={`posts/${post.id}`} >
               <div key={post.id} className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl" >
-                <h2 className="hover:text-blue-500">{post.title}</h2>
-                <p className="hover:text-blue-500">Status : {post.status}</p>
+                <p className="hover:text-blue-500">会社名: {post.company}</p>
+                <p className="hover:text-blue-500">勤務地: {post.place}</p>
+                <p className="hover:text-blue-500">応募状況: {post.status}</p>
 
                 <span suppressHydrationWarning>
                   <Link href={`edit-post/${post.id}/`} >

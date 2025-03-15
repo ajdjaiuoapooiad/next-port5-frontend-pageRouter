@@ -26,6 +26,7 @@ const ScrapeCreatePage = () => {
         const jobs = response.data.jobs
         setResponseData(jobs);
         console.log(jobs);
+        router.push('/posts')
       } catch (err) {
         console.error(err);
       }
