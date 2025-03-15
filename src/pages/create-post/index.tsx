@@ -8,18 +8,18 @@ import { ChangeEvent, FormEvent, useState } from "react";
 export default function CreatePost() {
   const [ company,setCompany ] = useState('')
   const [ place,setPlace ] = useState('')
-  const [ status,setStatus ] = useState('')
+  const [selectedValue, setSelectedValue] = useState('');
   const router = useRouter()
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(company, place, status);
+    console.log(company, place, selectedValue);
 
     try{
       await axios.post('http://127.0.0.1:8000/api/device/', {
         company: company,
         place: place,
-        status: status
+        status: selectedValue
       })
       // window.alert('送信が完了しました。');
       router.push('/posts')
@@ -41,27 +41,38 @@ export default function CreatePost() {
       <div className="p-5 m-5 border w-1/2 bg-gray-400 rounded-lg">
         <h1 >ブログ新規登録</h1>
         <form  onSubmit={handleSubmit}>
-          <label>Company:</label>
-          <Input
-            className="bg-white"
-            type="text"
-            name="company"
-            onChange={(e) => setCompany(e.target.value)}
-          />
-          <label >Place:</label>
-          <Input
-            className="bg-white"
-            type="text"
-            name="place"
-            onChange={(e) => setPlace(e.target.value)}
-          />
-          <label >Status:</label>
-          <Input
-            className="bg-white"
-            type="text"
-            name="status"
-            onChange={(e) => setStatus(e.target.value)}
-          />
+
+          <div className="my-5">
+            <label>Company:</label>
+            <Input
+              className="bg-white"
+              type="text"
+              name="company"
+              onChange={(e) => setCompany(e.target.value)}
+            />
+          </div>
+
+          <div className="my-5">
+            <label >Place:</label>
+            <Input
+              className="bg-white"
+              type="text"
+              name="place"
+              onChange={(e) => setPlace(e.target.value)}
+            />
+
+          </div>
+
+          <div className="my-3">
+            <label >Status:</label>
+            <select className="mx-5 my-5 p-2 rounded-lg" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}>
+              <option value="">選択してください</option>
+              <option value="応募中">応募中</option>
+              <option value="面接中">面接中</option>
+              <option value="不採用">不採用</option>
+            </select>
+          </div>
+
           <Button type="submit">
             Submit
           </Button>

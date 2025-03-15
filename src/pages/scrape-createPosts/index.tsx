@@ -40,7 +40,7 @@ const ScrapeCreatePage = () => {
         </div>
 
         <div className='col-span-4 p-5'>
-            <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400">
+            <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400 rounded-lg">
                 <h1>ScrapeCreatePage</h1>
                 <p>このページでは、URLを入力してリンク先の求人を一括で登録できます。</p>
                 <form  onSubmit={handleSubmit}>

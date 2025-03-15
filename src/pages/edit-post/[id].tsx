@@ -15,7 +15,7 @@ type Props = {
 export default function EditPost({ post }: Props) {
   const [ company,setCompany ] = useState(post.company)
   const [ place,setPlace ] = useState(post.place)
-  const [ status,setStatus ] = useState(post.status)
+  const [selectedValue, setSelectedValue] = useState(post.status);
   const router = useRouter();
 
   const handleCompanyChange = (e: any) => {
@@ -24,10 +24,6 @@ export default function EditPost({ post }: Props) {
 
   const handlePlaceChange = (e: any) => {
     setPlace(e.target.value);
-  };
-
-  const handleStatusChange = (e: any) => {
-    setStatus(e.target.value);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -39,7 +35,7 @@ export default function EditPost({ post }: Props) {
         {
           company: company,
           place: place,
-          status: status,
+          status: selectedValue,
         }
       );
       router.push("/posts");
@@ -60,27 +56,35 @@ export default function EditPost({ post }: Props) {
         <div className="p-5 m-5 border w-1/2 bg-gray-400 rounded-lg">
           <h1 >ブログ編集</h1>
           <form  onSubmit={handleSubmit}>
-            <label >Company:</label>
-            <Input
-              className="bg-white"
-              type="text"
-              value={company}
-              onChange={handleCompanyChange}
-            />
-            <label >Place:</label>
-            <Input
-              className="bg-white"
-              type="text"
-              value={place}
-              onChange={handlePlaceChange}
-            />
+            <div className="my-5">
+              <label >Company:</label>
+              <Input
+                className="bg-white"
+                type="text"
+                value={company}
+                onChange={handleCompanyChange}
+              />
+            </div>
+
+            <div className="my-5">
+              <label >Place:</label>
+              <Input
+                className="bg-white"
+                type="text"
+                value={place}
+                onChange={handlePlaceChange}
+              />
+            </div>
+
+            <div className="my-3">
             <label >Status:</label>
-            <Input
-              className="bg-white"
-              type="text"
-              value={status}
-              onChange={handleStatusChange}
-            />
+            <select className="mx-5 my-5 p-2 rounded-lg" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}>
+              <option value="">選択してください</option>
+              <option value="応募中">応募中</option>
+              <option value="面接中">面接中</option>
+              <option value="不採用">不採用</option>
+            </select>
+          </div>
 
             <Button  type="submit">
               Update
