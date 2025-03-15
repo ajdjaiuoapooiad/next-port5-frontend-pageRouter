@@ -38,23 +38,26 @@ export default function CreatePost() {
 
       <div className='col-span-4 p-5'>
 
-      <div className="p-5 m-5 border w-1/2">
+      <div className="p-5 m-5 border w-1/2 bg-gray-400 rounded-lg">
         <h1 >ブログ新規登録</h1>
         <form  onSubmit={handleSubmit}>
           <label>Company:</label>
           <Input
+            className="bg-white"
             type="text"
             name="company"
             onChange={(e) => setCompany(e.target.value)}
           />
           <label >Place:</label>
           <Input
+            className="bg-white"
             type="text"
             name="place"
             onChange={(e) => setPlace(e.target.value)}
           />
           <label >Status:</label>
           <Input
+            className="bg-white"
             type="text"
             name="status"
             onChange={(e) => setStatus(e.target.value)}

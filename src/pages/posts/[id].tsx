@@ -71,7 +71,7 @@ const DetailPage = ({post}: Props) => {
       </div>
 
       <div className='col-span-4 p-5'>
-        <div className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl hover:bg-gray-300 rounded-xl">
+        <div className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl  bg-gray-100 hover:bg-gray-300 rounded-lg">
           <p className="hover:text-blue-500">会社名: {post.company}</p>
           <p className="hover:text-blue-500">勤務地: {post.place}</p>
           <p className="hover:text-blue-500">応募状況: {post.status}</p>

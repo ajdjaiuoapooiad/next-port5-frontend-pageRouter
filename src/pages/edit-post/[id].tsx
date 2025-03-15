@@ -57,23 +57,26 @@ export default function EditPost({ post }: Props) {
       </div>
 
       <div className='col-span-4 p-5'>
-        <div className="p-5 m-5 border w-1/2">
+        <div className="p-5 m-5 border w-1/2 bg-gray-400 rounded-lg">
           <h1 >ブログ編集</h1>
           <form  onSubmit={handleSubmit}>
             <label >Company:</label>
             <Input
+              className="bg-white"
               type="text"
               value={company}
               onChange={handleCompanyChange}
             />
             <label >Place:</label>
             <Input
+              className="bg-white"
               type="text"
               value={place}
               onChange={handlePlaceChange}
             />
             <label >Status:</label>
             <Input
+              className="bg-white"
               type="text"
               value={status}
               onChange={handleStatusChange}
