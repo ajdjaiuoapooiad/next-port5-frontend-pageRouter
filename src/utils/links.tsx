@@ -18,8 +18,8 @@ const links: NavLink[] = [
     icon: <AppWindow />,
   },
   {
-    href: '/',
-    label: 'stats',
+    href: '/graph-posts',
+    label: 'graph Jobs',
     icon: <AreaChart />,
   },
   {

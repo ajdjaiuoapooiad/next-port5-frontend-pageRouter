@@ -50,7 +50,7 @@ const ScrapePostsList = () => {
         <div className='col-span-4 p-5'>
 
           <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400">
-              <h1>ScrapeCreatePage</h1>
+              <h1>ScrapePage</h1>
               <p>このページでは、URLを入力してリンク先の求人を一括で取得できます。</p>
               <form  onSubmit={handleSubmit}>
                 <label>URL:</label>
@@ -82,16 +82,69 @@ const ScrapePostsList = () => {
                  {responseData && (
                     <div>
                       <h2>レスポンスデータ:</h2>
-                      {responseData.map((job: Job, index: number) => (
-                        <div key={index} className='border p-5 m-5 bg-white'>
-                          <h2>id: {index + 1}:</h2>
-                          <h3>{job.title}</h3>
-                          <p>会社名: {job.company}</p>
-                          <p>勤務地: {job.place}</p>
+    
+                        <div className="overflow-x-auto">
+                          <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-50">
+                              <tr>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  id
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  title
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  company
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  company
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  company
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  company
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                  company
+                                </th>
+                                
+                              </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                            {responseData.map((job: Job, index: number) => (
+                              <tr key={index}>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {index + 1}:
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.title}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.company}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.company}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.company}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.company}
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                  {job.company}
+                                </td>
+                              </tr>
+                             ))
+                            }
+                              
+                            </tbody>
+                          </table>
                         </div>
-                      ))
-                      } 
-  
+ 
+
+                        
                     </div>
                   )}
               
