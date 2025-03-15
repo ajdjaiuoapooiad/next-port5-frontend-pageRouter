@@ -51,6 +51,7 @@ const ScrapePostsList = () => {
 
           <div className="p-5 my-5 m-5 border w-2/3  bg-gray-400">
               <h1>ScrapeCreatePage</h1>
+              <p>このページでは、URLを入力してリンク先の求人を一括で取得できます。</p>
               <form  onSubmit={handleSubmit}>
                 <label>URL:</label>
                 <Input
