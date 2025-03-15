@@ -13,16 +13,21 @@ type Props = {
 };
 
 export default function EditPost({ post }: Props) {
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.status);
+  const [ company,setCompany ] = useState(post.company)
+  const [ place,setPlace ] = useState(post.place)
+  const [ status,setStatus ] = useState(post.status)
   const router = useRouter();
 
-  const handleTitleChange = (e: any) => {
-    setTitle(e.target.value);
+  const handleCompanyChange = (e: any) => {
+    setCompany(e.target.value);
   };
 
-  const handleContentChange = (e: any) => {
-    setContent(e.target.value);
+  const handlePlaceChange = (e: any) => {
+    setPlace(e.target.value);
+  };
+
+  const handleStatusChange = (e: any) => {
+    setStatus(e.target.value);
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -32,8 +37,9 @@ export default function EditPost({ post }: Props) {
       const response = await axios.put(
         `http://127.0.0.1:8000/api/device/${post.id}/`,
         {
-          title: title,
-          status: content,
+          company: company,
+          place: place,
+          status: status,
         }
       );
       router.push("/posts");
@@ -54,18 +60,25 @@ export default function EditPost({ post }: Props) {
         <div className="p-5 m-5 border w-1/2">
           <h1 >ブログ編集</h1>
           <form  onSubmit={handleSubmit}>
-            <label >Title:</label>
+            <label >Company:</label>
             <Input
               type="text"
-              value={title}
-              onChange={handleTitleChange}
+              value={company}
+              onChange={handleCompanyChange}
             />
-            <label >Content:</label>
+            <label >Place:</label>
             <Input
               type="text"
-              value={content}
-              onChange={handleContentChange}
+              value={place}
+              onChange={handlePlaceChange}
             />
+            <label >Status:</label>
+            <Input
+              type="text"
+              value={status}
+              onChange={handleStatusChange}
+            />
+
             <Button  type="submit">
               Update
             </Button>
