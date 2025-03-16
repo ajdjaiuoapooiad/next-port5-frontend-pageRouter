@@ -23,7 +23,7 @@ export async function getStaticPaths() {
     // We'll pre-render only these paths at build time.
     // { fallback: 'blocking' } will server-render pages
     // on-demand if not generated at build time.
-    return { paths, fallback: 'blocking' };
+    return { paths, fallback: true };
   }
 
 
