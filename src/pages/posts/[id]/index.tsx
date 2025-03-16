@@ -12,7 +12,7 @@ type Props = {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch("http://127.0.0.1:8000/api/device");
+    const res = await fetch("http://localhost:8000/api/device");
     const posts: Post[] = await res.json();
   
     // Get the paths we want to pre-render based on posts
