@@ -23,7 +23,7 @@ export async function getStaticPaths() {
     // We'll pre-render only these paths at build time.
     // { fallback: 'blocking' } will server-render pages
     // on-demand if not generated at build time.
-    return { paths, fallback: true };
+    return { paths, fallback: 'blocking' };
   }
 
 
@@ -43,7 +43,6 @@ export async function getStaticProps({params}: {params: {id: string}}) {
 
 const DetailPage = ({post}: Props) => {
   const router = useRouter();
-
 
 
   const handleUpdate = async (post: Post) => {
