@@ -12,7 +12,7 @@ type Props = {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch("http://localhost:8000/api/device");
+    const res = await fetch("http://127.0.0.1:8000/api/device/");
     const posts: Post[] = await res.json();
   
     // Get the paths we want to pre-render based on posts
@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({params}: {params: {id: string}}) {
-    const res = await fetch(`http://localhost:8000/api/device/${params.id}`);
+    const res = await fetch(`http://127.0.0.1:8000/api/device/${params.id}/`);
     const post = await res.json();
     console.log(post);
     
@@ -53,7 +53,7 @@ const DetailPage = ({post}: Props) => {
   const handleDelete = async (id: any) => {
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/device/${id}`
+        `http://127.0.0.1:8000/api/device/${id}/`
       );
       window.alert('削除が完了しました。');
       router.push('/posts')

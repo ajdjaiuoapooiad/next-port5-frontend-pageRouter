@@ -13,7 +13,7 @@ type Props = {
 
 export async function getStaticProps() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/device");
+    const res = await fetch("http://127.0.0.1:8000/api/device/");
     const posts = await res.json();
     console.log(posts);
     
@@ -41,7 +41,7 @@ export default function PostsListPage({posts}: Props) {
   const handleDelete = async (id: string) => {
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/device/${id}`
+        `http://127.0.0.1:8000/api/device/${id}/`
       );
       // window.alert('削除が完了しました。');
       Swal.fire({
