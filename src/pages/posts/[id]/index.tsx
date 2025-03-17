@@ -20,10 +20,10 @@ export async function getStaticPaths() {
     const paths = posts.map((post) => ({
       params: { id: post.id.toString() },
     }));
-    return { paths, fallback: true };
+    return { paths , fallback: true };
   } catch (error) {
     console.error(error);
-    return { props: { post: null } };
+    return { paths: [], fallback: true };
   }
 }
 
