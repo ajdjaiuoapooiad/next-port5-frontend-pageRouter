@@ -13,7 +13,7 @@ type Props = {
 
 export async function getStaticPaths() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/api/device/");
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/device/`);
     const posts: Post[] = await res.json();
   
     // Get the paths we want to pre-render based on posts
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({params}: {params: {id: string}}) {
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/device/${params.id}/`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/device/${params.id}/`);
     const post = await res.json();
     console.log(post);
     
