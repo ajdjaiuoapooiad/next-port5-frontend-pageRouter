@@ -11,40 +11,19 @@ type Props = {
   post: Post
 }
 
-export async function getStaticPaths() {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
-  try {
-    const res = await axios.get(url);
-    const posts = res.data;
-  
-    // Get the paths we want to pre-render based on posts
-    const paths = posts.map((post: Post) => ({
-      params: { id: post.id.toString() },
-    }));
-    return { paths, fallback: true };
-  } catch (error) {
-    console.error(error);
-    return { paths: [], fallback: true };
-  }
-}
 
-
-export async function getStaticProps({params}: {params: {id: string}}) {
+export async function getServerSideProps({ params }: { params: { id: string } }) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${params.id}/`;
   try {
     const post = await axios.get(url);
-    console.log(post.data);
-    
-  
     return {
       props: {
         post: post.data,
       },
-      revalidate: 60, // 24 hours
     };
   } catch (error) {
     console.error(error);
-    return { props: { post: null} };
+    return { props: { post: null } };
   }
 }
 

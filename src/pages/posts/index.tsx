@@ -17,9 +17,12 @@ export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
     const posts = await axios.get(url);
+    // order idで降順にソート
+    const sortedPosts = posts.data.sort((a: any, b: any) => parseInt(b.id) - parseInt(a.id));
+    
     return {
       props: {
-        data: posts.data,
+        data: sortedPosts,
       },
     };
   } catch (error) {
