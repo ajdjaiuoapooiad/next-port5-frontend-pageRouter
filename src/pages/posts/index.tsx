@@ -5,10 +5,11 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Swal from 'sweetalert2';
 
 type Props = {
-  posts: Post[]
+  data: Post[]
 }
 
 export async function getStaticProps() {
@@ -19,7 +20,7 @@ export async function getStaticProps() {
     
     return {
       props: {
-        posts: posts.data,
+        data: posts.data,
       },
       revalidate: 60 * 60 * 24, // 24 hours
     };
@@ -29,34 +30,28 @@ export async function getStaticProps() {
     
     return {
       props: {
-        posts: [],
+        data: [],
       },
     };
   }
 }
 
-export default function PostsListPage({posts}: Props) {
+export default function PostsListPage({data}: Props) {
   const router = useRouter();
+  const [posts, setPosts] = useState<Post[]>(data);
 
 
   // Delete function
   const handleDelete = async (id: string) => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
     try {
-      const response = await axios.delete(
-        url
-      );
-      // window.alert('削除が完了しました。');
-      Swal.fire({
-        icon: 'success',
-        title: '削除完了',
-        text: '削除が完了しました。',
-      });
-      router.push('/posts')
-
+      await axios.delete(url);
+      setPosts(posts.filter((post) => post.id !== id)); // リストを更新
+      Swal.fire('削除完了', '削除が完了しました。', 'success');
+      router.push('/posts');
     } catch (error) {
       console.error(error);
-      alert("Error deleting post");
+      Swal.fire('エラー', '削除に失敗しました。', 'error');
     }
   };
 

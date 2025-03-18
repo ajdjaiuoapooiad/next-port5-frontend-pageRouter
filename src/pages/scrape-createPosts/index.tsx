@@ -15,10 +15,11 @@ const ScrapeCreatePage = () => {
       console.log(url);
       const formData = new FormData();
       formData.append('url', url);
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/jobs-create/`;
   
       // fetch APIを使ってサーバーにリクエストを送信
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/jobs-create/', formData, {
+        const response = await axios.post(apiUrl, formData, {
           headers: {
             'Content-Type': 'multipart/form-data', // FormDataを送信する場合に必要
           },
