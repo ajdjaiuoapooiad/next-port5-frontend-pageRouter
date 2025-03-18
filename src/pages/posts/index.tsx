@@ -14,13 +14,12 @@ type Props = {
 export async function getStaticProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
-    const res = await fetch(url);
-    const posts = await res.json();
-    console.log(posts);
+    const posts = await axios.get(url)
+    console.log(posts.data);
     
     return {
       props: {
-        posts,
+        posts: posts.data,
       },
       revalidate: 60 * 60 * 24, // 24 hours
     };
