@@ -12,22 +12,18 @@ type Props = {
   data: Post[]
 }
 
-export async function getStaticProps() {
+
+export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
-    const posts = await axios.get(url)
-    console.log(posts.data);
-    
+    const posts = await axios.get(url);
     return {
       props: {
         data: posts.data,
       },
-      revalidate: 30 // 24 hours
     };
   } catch (error) {
     console.error(error);
-    console.log('error is occured');
-    
     return {
       props: {
         data: [],
