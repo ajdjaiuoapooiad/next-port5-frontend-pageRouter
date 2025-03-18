@@ -101,12 +101,12 @@ export default function EditPost({ post }: Props) {
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
-  const res = await fetch(url);
-  const post = await res.json();
+  const post = await axios.get(url);
+
 
   return {
     props: {
-      post,
+      post: post.data,
     },
   };
 }
