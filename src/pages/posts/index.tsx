@@ -12,8 +12,9 @@ type Props = {
 }
 
 export async function getStaticProps() {
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/device/`);
+    const res = await fetch(url);
     const posts = await res.json();
     console.log(posts);
     
