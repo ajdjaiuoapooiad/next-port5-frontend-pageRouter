@@ -28,10 +28,11 @@ export default function EditPost({ post }: Props) {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${post.id}/`;
 
     try {
       const response = await axios.put(
-        `http://127.0.0.1:8000/api/device/${post.id}/`,
+        url,
         {
           company: company,
           place: place,
@@ -99,7 +100,8 @@ export default function EditPost({ post }: Props) {
 
 export async function getServerSideProps(context: any) {
   const { id } = context.params;
-  const res = await fetch(`http://127.0.0.1:8000/api/device/${id}/`);
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
+  const res = await fetch(url);
   const post = await res.json();
 
   return {

@@ -14,9 +14,10 @@ export default function CreatePost() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(company, place, selectedValue);
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
 
     try{
-      await axios.post('http://127.0.0.1:8000/api/device/', {
+      await axios.post(url, {
         company: company,
         place: place,
         status: selectedValue

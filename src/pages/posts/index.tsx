@@ -42,9 +42,10 @@ export default function PostsListPage({posts}: Props) {
 
   // Delete function
   const handleDelete = async (id: string) => {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
     try {
       const response = await axios.delete(
-        `http://127.0.0.1:8000/api/device/${id}/`
+        url
       );
       // window.alert('削除が完了しました。');
       Swal.fire({
