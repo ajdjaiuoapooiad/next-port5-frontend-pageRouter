@@ -26,6 +26,8 @@ export async function getStaticProps() {
     };
   } catch (error) {
     console.error(error);
+    console.log('error is occured');
+    
     return {
       props: {
         posts: [],
