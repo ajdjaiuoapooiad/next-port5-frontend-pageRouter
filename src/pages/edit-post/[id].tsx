@@ -5,6 +5,7 @@ import { Post } from "@/utils/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
+import Swal from "sweetalert2";
 
 
 
@@ -13,37 +14,38 @@ type Props = {
 };
 
 export default function EditPost({ post }: Props) {
-  const [ company,setCompany ] = useState(post.company)
-  const [ place,setPlace ] = useState(post.place)
+  const [company, setCompany] = useState(post.company);
+  const [place, setPlace] = useState(post.place);
   const [selectedValue, setSelectedValue] = useState(post.status);
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleCompanyChange = (e: any) => {
+  const handleCompanyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCompany(e.target.value);
   };
 
-  const handlePlaceChange = (e: any) => {
+  const handlePlaceChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPlace(e.target.value);
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${post.id}/`;
 
     try {
-      const response = await axios.put(
-        url,
-        {
-          company: company,
-          place: place,
-          status: selectedValue,
-        }
-      );
+      await axios.put(url, {
+        company: company,
+        place: place,
+        status: selectedValue,
+      });
+      Swal.fire('更新完了', '投稿を更新しました。', 'success');
       router.push("/posts");
-
     } catch (error) {
-      alert("Error updating post");
       console.error(error);
+      Swal.fire('エラー', '投稿の更新に失敗しました。', 'error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -87,8 +89,8 @@ export default function EditPost({ post }: Props) {
             </select>
           </div>
 
-            <Button  type="submit">
-              Update
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? '更新中...' : 'Update'}
             </Button>
           </form>
         </div>
@@ -102,7 +104,6 @@ export async function getServerSideProps(context: any) {
   const { id } = context.params;
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
   const post = await axios.get(url);
-
 
   return {
     props: {

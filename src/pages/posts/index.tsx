@@ -22,7 +22,7 @@ export async function getStaticProps() {
       props: {
         data: posts.data,
       },
-      revalidate: 60 * 60 * 24, // 24 hours
+      revalidate: 30 // 24 hours
     };
   } catch (error) {
     console.error(error);
