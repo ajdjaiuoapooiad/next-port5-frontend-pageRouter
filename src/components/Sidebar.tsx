@@ -1,26 +1,44 @@
-import links from "@/utils/links";
+import linksData from "@/utils/links";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { ReactNode } from "react";
 
-const Sidebar = () => {
+type LinkItem = {
+  href: string;
+  icon: ReactNode;
+  label: string;
+};
+
+type SidebarProps = {
+  isSidebarOpen: boolean;
+  toggleSidebar: () => void;
+};
+
+const links: LinkItem[] = linksData;
+
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   return (
-    <div>
-        <h1>Sidebar</h1>
-        <aside className='py-4 px-8 bg-muted h-full'>
-          <div className='flex flex-col mt-20 gap-y-4'>
-            {links.map((link: any) => {
-              return (
-                  <Link href={link.href} className='flex items-center gap-x-2 '>
-                    <Button className='w-full'>
-                    {link.icon} <span className='capitalize'>{link.label}</span>
-                    </Button>
-                  </Link>
-              );
-            })}
-          </div>
-        </aside>
-    </div>
-  )
-}
+    <aside
+      className={`md:col-span-1 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-white md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-auto ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      }`}
+    >
+      <div className="relative py-4 px-8 h-full">
+        <div className="flex flex-col mt-20 gap-y-4">
+          {links.map((link) => {
+            return (
+              <Link key={link.href} href={link.href} className="flex items-center gap-x-2">
+                <Button className="w-full">
+                  {link.icon} <span className="capitalize">{link.label}</span>
+                </Button>
+              </Link>
+            );
+          })}
+        </div>
+        
+      </div>
+    </aside>
+  );
+};
 
-export default Sidebar
+export default Sidebar;

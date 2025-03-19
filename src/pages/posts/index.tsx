@@ -11,7 +11,6 @@ type Props = {
   data: Post[];
 };
 
-
 export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
@@ -37,7 +36,7 @@ export async function getServerSideProps() {
 export default function PostsListPage({ data }: Props) {
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>(data);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -64,19 +63,21 @@ export default function PostsListPage({ data }: Props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className="min-h-screen">
 
-        <div className="grid md:grid-cols-5">
+      <Button
+        onClick={toggleSidebar}
+        className="absolute top-3 right-4 md:hidden "
+      >
+        {isSidebarOpen ? "✕" : "☰"}
+      </Button>
 
+      <div className="grid md:grid-cols-5">
+        {/* サイドバー */}
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-          <div className="md:col-span-1">
-
-              <Sidebar />
-
-
-          </div>
-
-          {/* メインコンテンツ */}
-          <main className="md:col-span-4 p-4 md:p-8">
+        {/* メインコンテンツ */}
+        <main className="md:col-span-4 p-4 md:p-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {posts.map((post) => (
                 <div
@@ -111,8 +112,7 @@ export default function PostsListPage({ data }: Props) {
             </div>
           </main>
         </div>
-
+      </div>
     </>
   );
 }
-
