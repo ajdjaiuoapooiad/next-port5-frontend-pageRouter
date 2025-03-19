@@ -1,9 +1,20 @@
+import { useEffect, useState } from "react";
+
 // components/Hero.js
-const Hero = () => {
+const Hero = ({ gradients = ['bg-gradient-to-r from-blue-600 to-indigo-800', 'bg-gradient-to-r from-indigo-600 to-purple-800'] }) => {
+    const [currentGradientIndex, setCurrentGradientIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentGradientIndex(prevIndex => (prevIndex + 1) % gradients.length);
+        }, 10000); // 10秒ごとにグラデーションを変更
+
+        return () => clearInterval(interval);
+    }, [gradients]);
     return (
-        <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-32 overflow-hidden">
+        <section className={`relative text-white py-32 overflow-hidden transition-colors duration-5000 ease-in-out ${gradients[currentGradientIndex]}`}>
             {/* 背景画像 */}
-            <div className="absolute inset-0 bg-[url('/images/test9.svg')] bg-cover bg-center opacity-20"></div>
+            <div className="absolute inset-0 bg-[url('/images/test9.svg')] bg-cover bg-center opacity-20 "></div>
             <div className="container mx-auto text-center relative z-10">
                 <h2 className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight">
                     面接管理を効率化し、<br className="hidden md:block" />
