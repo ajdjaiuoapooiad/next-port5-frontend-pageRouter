@@ -1,4 +1,6 @@
 import BarChart from '@/components/BarChart'
+import Features from '@/components/Features'
+import Image from 'next/image'
 import React from 'react'
 
 const HomePage = () => {
@@ -15,34 +17,9 @@ const HomePage = () => {
       </div>
     </div>
 
+    <Features />
 
-    <div className="container mx-auto py-16">
-      <h2 className="text-3xl font-semibold text-center mb-8">サービス紹介</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-        <div className="text-center">
-          <img src="/images/websiteplanet-dummy-1500X600.png" alt="候補者管理" className="w-10/12 h-52 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">候補者管理</h3>
-          <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
-        </div>
-        {/* 他のサービス紹介 */}
-        <div className="text-center">
-          <img src="/images/websiteplanet-dummy-540X400.png" alt="候補者管理" className="w-24 h-24 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">候補者管理</h3>
-          <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
-        </div>
-        <div className="text-center">
-          <img src="/images/websiteplanet-dummy-540X400.png" alt="候補者管理" className="w-24 h-24 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">候補者管理</h3>
-          <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
-        </div>
-        <div className="text-center">
-          <img src="/images/websiteplanet-dummy-540X400.png" alt="候補者管理" className="w-24 h-24 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold mb-2">候補者管理</h3>
-          <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
-        </div>
-      </div>
-    </div>
+    
 
 
     <div className="bg-gray-100 py-16">
@@ -72,8 +49,8 @@ const HomePage = () => {
   <h2 className="text-3xl font-semibold text-center mb-8">サービス紹介</h2>
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
     <div className="text-center">
-      <img src="/icons/candidate-management.svg" alt="候補者管理のアイコン" className="w-24 h-24 mx-auto mb-4" />
-      <h3 className="text-xl font-semibold mb-2">候補者管理</h3>
+      <img src="/" alt="候補者管理のアイコン" className="w-24 h-24 mx-auto mb-4" />
+      <h3 className="text-xl font-semibold mb-2">インターンの求人数</h3>
       <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
       <BarChart data={[10, 30, 100]} labels={['京都', '大阪', '東京']} /> {/* グラフを追加 */}
     </div>
