@@ -5,12 +5,45 @@ import Hero from '@/components/Hero'
 import Pricing from '@/components/Pricing'
 import Head from 'next/head'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
+interface Screenshot {
+  src: string;
+  alt: string;
+}
 
 const HomePage = () => {
   const chartData = [10, 30, 100, 50, 15];
   const chartLabels = ['京都', '大阪', '東京', '静岡', '名古屋'];
 
+
+  const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const screenshots: Screenshot[] = [
+    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 1' },
+    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 2' },
+    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 3' },
+  ];
+
+  const handleImageClick = (image: Screenshot) => {
+    setSelectedImage(image);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+  };
 
   return (
     <div className='bg-gray-50'>
@@ -22,18 +55,44 @@ const HomePage = () => {
       <Hero />
 
       <Features />
-
-
-       {/* スクリーンショットセクション */}
-       <section className="bg-gray-100 py-16">
-          <div className="container mx-auto">
+    
+      {/* スクリーンショットセクション（改善後） */}
+      <section className="bg-gray-100 py-24 px-48">
+          <div className="container mx-auto ">
             <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <img src="/images/websiteplanet-dummy-1500X600.png" alt="Screenshot 1" className="rounded-lg" />
-              <img src="/images/websiteplanet-dummy-1500X600.png" alt="Screenshot 2" className="rounded-lg" />
-            </div>
+            <Slider {...settings}>
+              {screenshots.map((screenshot, index) => (
+                <div key={index} className="px-4">
+                  <img
+                    src={screenshot.src}
+                    alt={screenshot.alt}
+                    className="rounded-lg cursor-pointer mx-auto"
+                    onClick={() => handleImageClick(screenshot)}
+                  />
+                </div>
+              ))}
+            </Slider>
           </div>
         </section>
+
+      {/* 画像拡大モーダル */}
+      {selectedImage && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center">
+          <div className="relative">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="rounded-lg max-w-full max-h-screen"
+            />
+            <button
+              className="absolute top-4 right-4 text-white text-2xl"
+              onClick={handleCloseModal}
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
 
       <Pricing />
 
