@@ -1,24 +1,32 @@
-// components/BarChart.tsx
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
-Chart.register(...registerables); // スケールを登録
+const BarChart = () => {
+  const chartData2 = [100, 100, 104, 110, 114];
+  const chartLabels2 = ['3/1', '3/2', '3/3', '3/4', '3/5'];
 
-const BarChart = ({ data, labels }) => {
   const chartData = {
-    labels: labels,
+    labels: chartLabels2,
     datasets: [
       {
-        label: 'データ',
-        data: data,
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        borderColor: 'rgba(54, 162, 235, 1)',
-        borderWidth: 1,
+        label: '株価',
+        data: chartData2,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
       },
     ],
   };
 
-  return <Bar data={chartData} />;
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: false, // Y軸の開始を0にしない
+      },
+    },
+  };
+
+  return <Line data={chartData} options={options} />;
 };
 
 export default BarChart;

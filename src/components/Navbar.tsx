@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
           >
             料金
           </Link>
-          <Link
+          {/* <Link
             href="/posts"
             className="hover:text-blue-500 transition-all duration-300"
           >
@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
             className="hover:text-blue-500 transition-all duration-300"
           >
             ログイン
-          </Link>
+          </Link> */}
           <Link
             href="/posts"
             className="hover:text-blue-500 transition-all duration-300"
@@ -94,7 +94,7 @@ const Navbar: React.FC = () => {
             >
               料金
             </Link>
-            <Link
+            {/* <Link
               href="/posts"
               className="hover:text-blue-500 transition-all duration-300"
             >
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
               className="hover:text-blue-500 transition-all duration-300"
             >
               ログイン
-            </Link>
+            </Link> */}
             <Link
               href="/posts"
               className="hover:text-blue-500 transition-all duration-300"

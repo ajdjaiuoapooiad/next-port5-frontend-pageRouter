@@ -17,10 +17,6 @@ interface Screenshot {
 }
 
 const HomePage = () => {
-  const chartData = [10, 30, 100, 50, 15];
-  const chartLabels = ['京都', '大阪', '東京', '静岡', '名古屋'];
-
-
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
 
   const settings = {
@@ -183,11 +179,6 @@ const HomePage = () => {
 
       <Contact  />
 
-
-      <section className="container mx-auto py-16 bg-gray-300 rounded-lg">
-          <h2 className="text-3xl font-semibold text-center mb-8">データ可視化</h2>
-          <BarChart data={chartData} labels={chartLabels} />
-      </section>
 
       <footer className="bg-gray-800 text-white text-center p-4">
         <p>&copy; {new Date().getFullYear()} インターン面接管理アプリ</p>
