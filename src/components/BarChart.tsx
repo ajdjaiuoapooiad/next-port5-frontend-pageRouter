@@ -22,6 +22,12 @@ const BarChart = () => {
       y: {
         beginAtZero: false, // Y軸の開始を0にしない
       },
+      x: {
+        ticks: {
+          autoSkip: true,
+          maxTicksLimit: 10,
+        },
+      },
     },
   };
 
@@ -29,3 +35,5 @@ const BarChart = () => {
 };
 
 export default BarChart;
+
+
