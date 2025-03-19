@@ -23,7 +23,36 @@ const HomePage = () => {
 
       <Features />
 
+
+       {/* スクリーンショットセクション */}
+       <section className="bg-gray-100 py-16">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <img src="/images/websiteplanet-dummy-1500X600.png" alt="Screenshot 1" className="rounded-lg" />
+              <img src="/images/websiteplanet-dummy-1500X600.png" alt="Screenshot 2" className="rounded-lg" />
+            </div>
+          </div>
+        </section>
+
       <Pricing />
+
+      {/* FAQセクション */}
+      <section className="bg-gray-100 py-16">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">よくある質問</h2>
+            <div className="space-y-4">
+              <div className="border rounded-lg p-4">
+                <h3 className="text-lg font-semibold">Q. 無料プランでどこまで使えますか？</h3>
+                <p className="text-gray-600">A. 基本的なスケジュール管理と評価管理が可能です。</p>
+              </div>
+              <div className="border rounded-lg p-4">
+                <h3 className="text-lg font-semibold">Q. 支払い方法は何がありますか？</h3>
+                <p className="text-gray-600">A. クレジットカード、銀行振込に対応しています。</p>
+              </div>
+            </div>
+          </div>
+        </section>
 
       <Contact  />
 
