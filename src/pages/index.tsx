@@ -1,11 +1,20 @@
 import BarChart from '@/components/BarChart'
 import Features from '@/components/Features'
+import Head from 'next/head'
 import Image from 'next/image'
 import React from 'react'
 
 const HomePage = () => {
+  const chartData = [10, 30, 100, 50, 15];
+  const chartLabels = ['京都', '大阪', '東京', '静岡', '名古屋'];
+
+
   return (
     <div>
+      <Head>
+          <title>インターン面接管理アプリ</title>
+          <link rel="icon" href="/favicon.ico" />
+      </Head>
 
     <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-20">
       <div className="container mx-auto text-center">
@@ -45,19 +54,10 @@ const HomePage = () => {
       </div>
     </div>
 
-<div className="container mx-auto py-16">
-  <h2 className="text-3xl font-semibold text-center mb-8">サービス紹介</h2>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-    <div className="text-center">
-      <img src="/" alt="候補者管理のアイコン" className="w-24 h-24 mx-auto mb-4" />
-      <h3 className="text-xl font-semibold mb-2">インターンの求人数</h3>
-      <p className="text-gray-500">候補者情報を一元管理し、選考状況を可視化します。</p>
-      <BarChart data={[10, 30, 100]} labels={['京都', '大阪', '東京']} /> {/* グラフを追加 */}
-    </div>
-    {/* 他のサービス紹介 */}
-  </div>
-</div>
-
+        <section className="container mx-auto py-16 bg-gray-50">
+            <h2 className="text-3xl font-semibold text-center mb-8">データ可視化</h2>
+            <BarChart data={chartData} labels={chartLabels} />
+        </section>
 
         <section id="pricing" className="py-8">
           <h2 className="text-3xl font-bold mb-4">料金プラン</h2>
