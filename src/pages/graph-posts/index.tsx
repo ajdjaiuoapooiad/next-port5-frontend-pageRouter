@@ -20,18 +20,18 @@ const GraphPage = () => {
             <h1>Graph Page</h1>
             <p>This is the Graph Page</p>
 
-            <section className="container mx-auto py-16 bg-gray-300 rounded-lg">
+            <section className="container mx-auto py-16 bg-gray-300 rounded-lg my-5">
                 <h2 className="text-3xl font-semibold text-center mb-8">株式会社A : エントリー数の推移</h2>
                 <BarChart  />
             </section>
 
-            <section className="container mx-auto py-16 bg-gray-300 rounded-lg">
-                <h2 className="text-3xl font-semibold text-center mb-8">各県のインターン求人数の推移</h2>
+            <section className="container mx-auto py-16 bg-gray-300 rounded-lg my-5">
+                <h2 className="text-3xl font-semibold text-center mb-8">各県 : インターン求人数</h2>
                 <BarChart2 data={chartData} labels={chartLabels} />
             </section>
 
-            <section className="container mx-auto py-16 bg-gray-300 rounded-lg">
-                <h2 className="text-3xl font-semibold text-center mb-8">各県のインターン求人数の推移</h2>
+            <section className="container mx-auto py-16 bg-gray-300 rounded-lg my-5">
+                <h2 className="text-3xl font-semibold text-center mb-8">東京 : インターン求人数の推移</h2>
                 <BarChart3 />
             </section>
         </div>
