@@ -1,5 +1,6 @@
 import links from "@/utils/links";
 import Link from "next/link";
+import { Button } from "./ui/button";
 
 const Sidebar = () => {
   return (
@@ -10,7 +11,9 @@ const Sidebar = () => {
             {links.map((link: any) => {
               return (
                   <Link href={link.href} className='flex items-center gap-x-2 '>
+                    <Button className='w-full'>
                     {link.icon} <span className='capitalize'>{link.label}</span>
+                    </Button>
                   </Link>
               );
             })}
