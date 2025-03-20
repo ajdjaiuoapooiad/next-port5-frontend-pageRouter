@@ -36,9 +36,11 @@ const HomePage = () => {
   };
 
   const screenshots: Screenshot[] = [
-    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 1' },
-    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 2' },
-    { src: '/images/websiteplanet-dummy-1500X600.png', alt: 'Screenshot 3' },
+    { src: '/images/screenshot/image.png', alt: 'Screenshot 1' },
+    { src: '/images/screenshot/image3.png', alt: 'Screenshot 2' },
+    { src: '/images/screenshot/image4.png', alt: 'Screenshot 3' },
+    { src: '/images/screenshot/image5.png', alt: 'Screenshot 4' },
+    { src: '/images/screenshot/image2.png', alt: 'Screenshot 5' },
   ];
 
   const handleImageClick = (image: Screenshot) => {
@@ -79,7 +81,7 @@ const HomePage = () => {
       <Features />
     
       {/* スクリーンショットセクション（改善後） */}
-      <section className="bg-gray-100 py-24 px-10 md:px-48">
+      <section className="bg-gray-500 py-24 px-10 md:px-56">
           <div className="container mx-auto ">
             <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
             <Slider {...settings}>
@@ -97,24 +99,24 @@ const HomePage = () => {
           </div>
         </section>
 
-      {/* 画像拡大モーダル */}
-      {selectedImage && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center">
-          <div className="relative">
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="rounded-lg max-w-full max-h-screen"
-            />
-            <button
-              className="absolute top-4 right-4 text-white text-2xl"
-              onClick={handleCloseModal}
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
+   {/* 画像拡大モーダル */}
+{selectedImage && (
+  <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 flex items-center justify-center">
+    <div className="relative">
+      <img
+        src={selectedImage.src}
+        alt={selectedImage.alt}
+        className="rounded-lg max-w-full max-h-screen"
+      />
+      <button
+        className="absolute top-4 right-4 bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-700 transition-colors duration-300"
+        onClick={handleCloseModal}
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+)}
 
       <Pricing />
 
