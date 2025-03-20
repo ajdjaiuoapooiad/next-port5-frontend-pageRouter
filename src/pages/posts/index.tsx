@@ -82,7 +82,7 @@ export default function PostsListPage({ data }: Props) {
               {posts.map((post) => (
                 <div
                   key={post.id}
-                  className="bg-white rounded-lg shadow-md p-4 md:p-5 hover:shadow-lg transition-shadow duration-300"
+                  className="bg-gray-300 rounded-lg shadow-md p-4 mx-10 md:mx-0 md:p-5 hover:shadow-lg transition-shadow duration-300"
                 >
                   <h2 className="text-xl font-semibold mb-2">{post.company}</h2>
                   <p className="text-gray-600 mb-1">勤務地: {post.place}</p>
