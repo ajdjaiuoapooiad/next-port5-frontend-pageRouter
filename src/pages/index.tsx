@@ -9,6 +9,7 @@ import React, { useState } from 'react'
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Navbar from '@/components/Navbar'
 
 
 interface Screenshot {
@@ -43,6 +44,8 @@ const HomePage = () => {
 
   return (
     <div className='bg-gray-50'>
+
+      <Navbar />
       <Head>
         <title>トップページ</title>
         <meta name="description" content="求人情報一覧ページ" />
