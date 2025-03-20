@@ -3,14 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Post } from "@/utils/types";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-
-
+import Layout from "@/components/Layout";
+import Head from "next/head";
 
 type Props = {
-  post: Post
-}
-
+  post: Post;
+};
 
 export async function getServerSideProps({ params }: { params: { id: string } }) {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${params.id}/`;
@@ -27,24 +25,19 @@ export async function getServerSideProps({ params }: { params: { id: string } })
   }
 }
 
-const DetailPage = ({post}: Props) => {
+const DetailPage = ({ post }: Props) => {
   const router = useRouter();
-
-
 
   const handleUpdate = async (post: Post) => {
     router.push(`/edit-post/${post.id}`);
   };
 
-  // Delete function
   const handleDelete = async (id: string) => {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
     try {
-      const response = await axios.delete(
-        url
-      );
-      window.alert('削除が完了しました。');
-      router.push('/posts')
+      const response = await axios.delete(url);
+      window.alert("削除が完了しました。");
+      router.push("/posts");
     } catch (error) {
       console.error(error);
       alert("Error deleting post");
@@ -52,31 +45,30 @@ const DetailPage = ({post}: Props) => {
   };
 
   return (
-    <div className='grid grid-cols-5'>
-      <div className='col-span-1'> 
-        <Sidebar />
-      </div>
+    <Layout>
+      <Head>
+        <title>ダッシュボード : 企業詳細ページ</title>
+        <meta name="description" content="企業詳細ページ" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/icons/test.svg" />
+      </Head>
 
-      <div className='col-span-4 p-5'>
-        <div className="border p-4 my-4 mx-3 col-span-1 hover:shadow-xl  bg-gray-100 hover:bg-gray-300 rounded-lg">
-          <p className="hover:text-blue-500">会社名: {post?.company}</p>
-          <p className="hover:text-blue-500">勤務地: {post?.place}</p>
-          <p className="hover:text-blue-500">応募状況: {post?.status}</p>
+      <div className="p-4 md:p-8">
+        <div className="bg-white rounded-lg shadow-md p-4 md:p-8 w-full md:w-1/2 mx-auto">
+          <p className="mb-2">会社名: {post?.company}</p>
+          <p className="mb-2">勤務地: {post?.place}</p>
+          <p className="mb-4">応募状況: {post?.status}</p>
 
-          <Button
-            onClick={() => handleUpdate(post)}
-          >
-            Edit
-          </Button>
-          <Button
-            onClick={() => handleDelete(post.id)}
-          >
-            Delete
-          </Button>
+          <div className="flex justify-between">
+            <Button onClick={() => handleUpdate(post)}>Edit</Button>
+            <Button onClick={() => handleDelete(post.id)} className="bg-red-500 hover:bg-red-600 text-white">
+              Delete
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
-}
+};
 
 export default DetailPage;

@@ -6,8 +6,8 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Swal from "sweetalert2";
-
-
+import Layout from "@/components/Layout";
+import Head from "next/head";
 
 type Props = {
   post: Post;
@@ -39,28 +39,31 @@ export default function EditPost({ post }: Props) {
         place: place,
         status: selectedValue,
       });
-      Swal.fire('更新完了', '投稿を更新しました。', 'success');
+      Swal.fire("更新完了", "投稿を更新しました。", "success");
       router.push("/posts");
     } catch (error) {
       console.error(error);
-      Swal.fire('エラー', '投稿の更新に失敗しました。', 'error');
+      Swal.fire("エラー", "投稿の更新に失敗しました。", "error");
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className='grid grid-cols-5'>
-      <div className='col-span-1'> 
-        <Sidebar />
-      </div>
+    <Layout>
+      <Head>
+        <title>ダッシュボード : 企業編集ページ</title>
+        <meta name="description" content="企業編集ページ" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/icons/test.svg" />
+      </Head>
 
-      <div className='col-span-4 p-5'>
-        <div className="p-5 m-5 border w-1/2 bg-gray-400 rounded-lg">
-          <h1 >ブログ編集</h1>
-          <form  onSubmit={handleSubmit}>
+      <div className="p-4 md:p-8">
+        <div className="bg-white rounded-lg shadow-md p-4 md:p-8 w-full md:w-1/2 mx-auto">
+          <h1>企業編集</h1>
+          <form onSubmit={handleSubmit}>
             <div className="my-5">
-              <label >Company:</label>
+              <label>Company:</label>
               <Input
                 className="bg-white"
                 type="text"
@@ -70,7 +73,7 @@ export default function EditPost({ post }: Props) {
             </div>
 
             <div className="my-5">
-              <label >Place:</label>
+              <label>Place:</label>
               <Input
                 className="bg-white"
                 type="text"
@@ -80,23 +83,26 @@ export default function EditPost({ post }: Props) {
             </div>
 
             <div className="my-3">
-            <label >Status:</label>
-            <select className="mx-5 my-5 p-2 rounded-lg" value={selectedValue} onChange={(e) => setSelectedValue(e.target.value)}>
-              <option value="">選択してください</option>
-              <option value="応募中">応募中</option>
-              <option value="面接中">面接中</option>
-              <option value="不採用">不採用</option>
-            </select>
-          </div>
+              <label>Status:</label>
+              <select
+                className="mx-5 my-5 p-2 rounded-lg"
+                value={selectedValue}
+                onChange={(e) => setSelectedValue(e.target.value)}
+              >
+                <option value="">選択してください</option>
+                <option value="応募中">応募中</option>
+                <option value="面接中">面接中</option>
+                <option value="不採用">不採用</option>
+              </select>
+            </div>
 
             <Button type="submit" disabled={isLoading}>
-              {isLoading ? '更新中...' : 'Update'}
+              {isLoading ? "更新中..." : "Update"}
             </Button>
           </form>
         </div>
       </div>
-    </div>
-
+    </Layout>
   );
 }
 

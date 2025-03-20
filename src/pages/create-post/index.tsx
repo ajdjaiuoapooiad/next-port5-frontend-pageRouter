@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
-import Layout from "@/components/Layout";
 import Head from "next/head";
+import Layout from "@/components/Layout";
 
 export default function CreatePost() {
   const [company, setCompany] = useState("");
