@@ -1,38 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+プロジェクト名
+面接管理アプリ
 
-## Getting Started
+概要
+このプロジェクトは、Next.jsとDjango REST Frameworkを用いて開発された面接管理アプリケーションです。面接官と応募者双方の視点から、面接プロセスを効率的に管理することを目的としています。
 
-First, run the development server:
+技術スタック
+フロントエンド: Next.js (TypeScript)
+バックエンド: Django REST Framework (Python)
+データベース: SQLite (開発環境)、PostgreSQL (本番環境)
+その他: Git, GitHub, Docker (オプション)
+主な機能
+面接官向け:
+面接スケジュールの管理
+応募者情報の管理
+面接結果の記録
+評価項目の設定
+応募者向け:
+面接スケジュールの確認
+企業情報の閲覧
+面接結果の確認
+開発期間
+3週間
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+GitHubリポジトリ
+[リポジトリのURL]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+開発背景
+面接プロセスにおける情報共有の課題を解決し、効率的な面接管理を実現するために開発しました。
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+工夫した点
+フロントエンド:
+Next.jsのサーバーサイドレンダリング(SSR)を活用し、初期表示速度を向上させました。
+TypeScriptを導入し、型安全性を確保しました。
+UI/UXを考慮し、直感的で使いやすいインターフェースを設計しました。
+バックエンド:
+Django REST Frameworkを活用し、RESTfulなAPIを構築しました。
+データベース設計を最適化し、パフォーマンスを向上させました。
+認証・認可機能を実装し、セキュリティを強化しました。　　
+その他:
+Dockerを用いて開発環境を構築し、環境構築の容易化と再現性を高めました。
+GitHub Actionsを用いてCI/CDパイプラインを構築し、開発効率を向上させました。
+苦労した点
+フロントエンドとバックエンドの連携部分で、データの整合性を保つのが難しかったです。
+短期間での開発だったため、全ての機能を実装する時間的余裕がありませんでした。
+今後の展望
+リアルタイムチャット機能の追加
+面接官と応募者間のフィードバック機能の追加
+多言語対応
+テストカバレッジの向上
+動作確認方法
+リポジトリをクローンします。
+フロントエンドとバックエンドそれぞれの環境構築手順に従って環境構築を行います。
+フロントエンドとバックエンドを起動します。
+ブラウザでフロントエンドにアクセスします。
+備考
+詳細な環境構築手順や動作確認方法は、リポジトリ内のREADME.mdを参照してください。
+本プロジェクトは、個人開発であり、商用利用を想定していません。
