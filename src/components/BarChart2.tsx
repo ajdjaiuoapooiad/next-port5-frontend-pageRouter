@@ -2,15 +2,36 @@ import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
-const BarChart2 = ({ data, labels }: {data: any, labels: any}) => {
+interface BarChart2Props {
+  data: number[];
+  labels: string[];
+}
+
+const BarChart2: React.FC<BarChart2Props> = ({ data, labels }) => {
+  const backgroundColors = labels.map((label) => {
+    if (label === '大阪府' || label === '東京都'|| label === '京都府'|| label === '高知県' ) {
+      return 'rgba(255, 99, 132, 0.5)'; // 赤
+    } else {
+      return 'rgba(54, 162, 235, 0.5)'; // 他の都道府県は青
+    }
+  });
+
+  const borderColors = labels.map((label) => {
+    if (label === '大阪府' || label === '東京都' || label === '京都府'|| label === '高知県' ) {
+      return 'rgba(255, 99, 132, 1)'; // 赤
+    } else {
+      return 'rgba(54, 162, 235, 1)'; // 他の都道府県は青
+    }
+  });
+
   const chartData = {
     labels: labels,
     datasets: [
       {
         label: 'データ',
         data: data,
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        borderColor: 'rgba(54, 162, 235, 1)',
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
         borderWidth: 1,
       },
     ],
@@ -19,7 +40,7 @@ const BarChart2 = ({ data, labels }: {data: any, labels: any}) => {
   const options = {
     scales: {
       y: {
-        beginAtZero: true, // Y軸の開始を0にする
+        beginAtZero: true,
       },
     },
   };
