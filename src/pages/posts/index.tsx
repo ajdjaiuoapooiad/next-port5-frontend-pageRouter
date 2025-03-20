@@ -57,7 +57,7 @@ export default function PostsListPage({ data }: Props) {
   return (
     <>
       <Head>
-        <title>企業一覧ページ</title>
+        <title>ダッシュボード : 企業一覧ページ</title>
         <meta name="description" content="求人情報一覧ページ" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/test.svg" />
