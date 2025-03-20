@@ -2,6 +2,7 @@ import linksData from "@/utils/links";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
 
 type LinkItem = {
   href: string;
@@ -17,6 +18,12 @@ type SidebarProps = {
 const links: LinkItem[] = linksData;
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
+
+  const router = useRouter();
+
+  if (!isSidebarOpen) { // isSidebarOpenがfalseの場合にnullを返す
+    return null;
+  }
   return (
     <aside
       className={`md:col-span-1 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-white md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-auto ${
