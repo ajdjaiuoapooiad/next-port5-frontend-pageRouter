@@ -10,6 +10,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Navbar from '@/components/Navbar'
+import { Button } from '@/components/ui/button'
+import Sidebar from '@/components/Sidebar'
 
 
 interface Screenshot {
@@ -19,6 +21,11 @@ interface Screenshot {
 
 const HomePage = () => {
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+    const toggleSidebar = () => {
+      setIsSidebarOpen(!isSidebarOpen);
+    };
 
   const settings = {
     dots: true,
@@ -52,6 +59,20 @@ const HomePage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/test.svg" />
       </Head>
+
+      <div className="min-h-screen bg-gray-100">
+        <Button
+          onClick={toggleSidebar}
+          className="absolute top-3 right-4 md:hidden "
+        >
+          {isSidebarOpen ? "✕" : "☰"}
+        </Button>
+
+        <div className="grid md:grid-cols-5">
+          {isSidebarOpen && (
+            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+          )}
+        </div>
 
       <Hero />
 
@@ -188,6 +209,8 @@ const HomePage = () => {
       <footer className="bg-gray-800 text-white text-center p-4">
         <p>&copy; {new Date().getFullYear()} インターン面接管理アプリ</p>
       </footer>
+
+    </div>
 
     </div>
   )

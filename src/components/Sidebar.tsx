@@ -25,7 +25,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   }
   return (
     <aside
-      className={`md:col-span-1 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-gray-300 md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-screen ${ // md:h-screenに変更
+      className={`flex-shrink-0 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-gray-300 md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-screen ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       }`}
     >

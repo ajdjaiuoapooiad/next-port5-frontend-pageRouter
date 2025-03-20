@@ -117,6 +117,9 @@ const GraphPage = () => {
           </form>
         </div>
 
+
+        <p className="text-2xl font-bold">参考例</p>
+
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             株式会社Aの求人 : エントリー数の推移（1日単位）
