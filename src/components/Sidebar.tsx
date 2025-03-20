@@ -18,15 +18,14 @@ type SidebarProps = {
 const links: LinkItem[] = linksData;
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
-
   const router = useRouter();
 
-  if (!isSidebarOpen) { // isSidebarOpenがfalseの場合にnullを返す
+  if (!isSidebarOpen) {
     return null;
   }
   return (
     <aside
-      className={`md:col-span-1 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-white md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-auto ${
+      className={`md:col-span-1 w-full top-0 h-screen bg-gray-800 text-white p-4 md:bg-gray-300 md:text-gray-800 transition-transform duration-300 ease-in-out md:shadow-md md:h-screen ${ // md:h-screenに変更
         isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       }`}
     >
@@ -42,7 +41,6 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
             );
           })}
         </div>
-        
       </div>
     </aside>
   );
