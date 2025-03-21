@@ -8,7 +8,7 @@ type LayoutProps = {
 };
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -20,13 +20,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <div className="min-h-screen bg-gray-100">
         <Button
           onClick={toggleSidebar}
-          className="absolute top-3 right-4 md:hidden "
+          className="absolute top-3 right-4 md:hidden"
         >
           {isSidebarOpen ? "✕" : "☰"}
         </Button>
         <div className="grid md:grid-cols-5">
+          <aside className="hidden md:block md:col-span-1">
+            <Sidebar isSidebarOpen={true} toggleSidebar={() => {}} />
+          </aside>
           {isSidebarOpen && (
-            <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+            <aside className="md:hidden">
+              <Sidebar
+                isSidebarOpen={isSidebarOpen}
+                toggleSidebar={toggleSidebar}
+              />
+            </aside>
           )}
           <main className="md:col-span-4 p-0 md:p-8">{children}</main>
         </div>
