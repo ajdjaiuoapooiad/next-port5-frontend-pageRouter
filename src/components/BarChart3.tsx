@@ -20,6 +20,8 @@ const BarChart3 = () => {
     ],
   };
 
+  
+
   const options = {
     scales: {
       y: {

@@ -36,6 +36,8 @@ const BarChart2: React.FC<BarChart2Props> = ({ data, labels }) => {
       },
     ],
   };
+  console.log(chartData);
+  
 
   const options = {
     scales: {

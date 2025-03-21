@@ -2,6 +2,10 @@ import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 import data from '../utils/data.json'; // ファイルパスを適切に設定
+
+
+
+
 const BarChart = () => {
   const chartData = {
     labels: data.chartLabels2,
@@ -14,6 +18,8 @@ const BarChart = () => {
       },
     ],
   };
+  console.log(chartData);
+  
 
 
   const options = {
