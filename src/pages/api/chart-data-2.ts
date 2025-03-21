@@ -1,6 +1,6 @@
 // pages/api/chart-data-2.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { ChartData } from '../../types/interfaces'; // パスを修正
+import { ChartData } from '../../utils/types'; // パスを修正
 
 const generateTestData = (length: number, startValue: number, volatility: number, trend: number, seasonalAmplitude: number, eventImpact: number) => {
     const data = [startValue];

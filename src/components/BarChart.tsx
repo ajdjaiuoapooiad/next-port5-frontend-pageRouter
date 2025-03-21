@@ -1,7 +1,7 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useState, useEffect } from 'react';
-import { ChartData } from '../../types/interfaces'; // パスを修正
+import { ChartData } from '../utils/types'; // パスを修正
 
 Chart.register(...registerables);
 
