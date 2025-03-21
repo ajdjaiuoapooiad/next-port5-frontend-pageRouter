@@ -7,72 +7,49 @@ import { Input } from "@/components/ui/input";
 import Head from "next/head";
 import { FormEvent, useState, useEffect } from "react";
 
-const prefectureJobCounts = {
-  "北海道": 150,
-  "青森県": 80,
-  "岩手県": 90,
-  "宮城県": 120,
-  "秋田県": 70,
-  "山形県": 85,
-  "福島県": 100,
-  "茨城県": 110,
-  "栃木県": 105,
-  "群馬県": 95,
-  "埼玉県": 130,
-  "千葉県": 125,
-  "東京都": 200,
-  "神奈川県": 140,
-  "新潟県": 90,
-  "富山県": 85,
-  "石川県": 95,
-  "福井県": 80,
-  "山梨県": 75,
-  "長野県": 100,
-  "岐阜県": 105,
-  "静岡県": 115,
-  "愛知県": 150,
-  "三重県": 110,
-  "滋賀県": 95,
-  "京都府": 120,
-  "大阪府": 160,
-  "兵庫県": 135,
-  "奈良県": 85,
-  "和歌山県": 70,
-  "鳥取県": 65,
-  "島根県": 70,
-  "岡山県": 110,
-  "広島県": 125,
-  "山口県": 90,
-  "徳島県": 75,
-  "香川県": 80,
-  "愛媛県": 85,
-  "高知県": 70,
-  "福岡県": 140,
-  "佐賀県": 75,
-  "長崎県": 80,
-  "熊本県": 95,
-  "大分県": 85,
-  "宮崎県": 75,
-  "鹿児島県": 80,
-  "沖縄県": 90,
-};
+interface ChartData {
+  prefectureJobCounts: { [key: string]: number };
+}
 
 const GraphPage = () => {
-  const labels = Object.keys(prefectureJobCounts);
-  const data = Object.values(prefectureJobCounts);
-
   const [url, setUrl] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [isClient, setIsClient] = useState(false); // クライアントサイドでのみ実行されるように状態を追加
+  const [isClient, setIsClient] = useState(false);
+  const [chartData, setChartData] = useState<ChartData | null>(null);
 
   useEffect(() => {
-    setIsClient(true); // クライアントサイドでのみ実行されるように状態を更新
+    setIsClient(true);
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/chart-data');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data: ChartData = await response.json();
+        setChartData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(url);
   };
+
+  if (!chartData) {
+    return (
+      <Layout>
+        <div>Loading...</div>
+      </Layout>
+    );
+  }
+
+  const labels = Object.keys(chartData.prefectureJobCounts);
+  const data = Object.values(chartData.prefectureJobCounts);
 
   return (
     <Layout>
@@ -129,26 +106,22 @@ const GraphPage = () => {
           <h2 className="text-3xl font-semibold text-center mb-8">
             株式会社Aの求人 : エントリー数の推移（1日単位）
           </h2>
-          {isClient && <BarChart />} {/* クライアントサイドでのみ描画 */}
+          {isClient && <BarChart />}
         </section>
-
-
-        
 
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             都道府県 : インターン求人数
           </h2>
-          {isClient && <BarChart2 data={data} labels={labels} />} {/* クライアントサイドでのみ描画 */}
+          {isClient && <BarChart2 />}
         </section>
 
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             東京 : インターン求人数の推移（1日単位）
           </h2>
-          {isClient && <BarChart3 />} {/* クライアントサイドでのみ描画 */}
+          {isClient && <BarChart3 />}
         </section>
-        
       </div>
     </Layout>
   );

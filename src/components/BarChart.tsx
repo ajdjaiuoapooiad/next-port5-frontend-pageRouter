@@ -1,21 +1,17 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useState, useEffect } from 'react';
+import { ChartData } from '../../types/interfaces'; // パスを修正
 
 Chart.register(...registerables);
 
-interface ChartData {
-  chartLabels2: string[];
-  chartData2: number[];
-}
-
-const BarChart: React.FC = () => {
+const BarChart = () => {
   const [chartData, setChartData] = useState<ChartData | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/chart-data');
+        const response = await fetch('/api/chart-data-2'); // APIエンドポイント
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -25,7 +21,6 @@ const BarChart: React.FC = () => {
         console.error('Error fetching data:', error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -47,19 +42,8 @@ const BarChart: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  const processedData = {
-    labels: chartData.chartLabels2,
-    datasets: [
-      {
-        label: 'エントリー数',
-        data: chartData.chartData2,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-      },
-    ],
-  };
 
-  return <Line data={processedData} options={options} />;
+  return <Line data={chartData} options={options} />;
 };
 
 export default BarChart;
