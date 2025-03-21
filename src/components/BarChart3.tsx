@@ -1,4 +1,4 @@
-import { Bar } from 'react-chartjs-2'; // Barコンポーネントをインポート
+import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { useState, useEffect } from 'react';
 import { Chart3Data } from '../utils/types';
@@ -27,7 +27,10 @@ const BarChart3 = () => {
   const options = {
     scales: {
       y: {
-        beginAtZero: true, // y軸の最小値を0に設定
+        beginAtZero: false, // y軸の最小値を0にしない
+        ticks: {
+          stepSize: 2, // y軸の刻み幅を調整 (必要に応じて変更)
+        },
       },
       x: {
         ticks: {
@@ -48,14 +51,14 @@ const BarChart3 = () => {
       {
         label: '求人数',
         data: chartData.chartData3,
-        backgroundColor: 'rgba(54, 162, 235, 0.6)', // 棒グラフの色を設定
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
         borderColor: 'rgba(54, 162, 235, 1)',
         borderWidth: 1,
       },
     ],
   };
 
-  return <Bar data={processedData} options={options} />; // Barコンポーネントを使用
+  return <Bar data={processedData} options={options} />;
 };
 
 export default BarChart3;
