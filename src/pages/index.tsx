@@ -81,9 +81,9 @@ const HomePage = () => {
       <Features />
     
       {/* スクリーンショットセクション（改善後） */}
-      <section className="bg-gray-500 py-24 px-10 md:px-56">
+      <section className="bg-gray-400 py-24 px-10 md:px-56">
           <div className="container mx-auto ">
-            <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
+            <h2 className="text-3xl font-bold text-white text-center mb-8">スクリーンショット</h2>
             <Slider {...settings}>
               {screenshots.map((screenshot, index) => (
                 <div key={index} className="px-4">
