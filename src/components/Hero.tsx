@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from 'next/image';
+import Link from "next/link";
 
 interface HeroProps {
   gradients?: string[];
@@ -34,9 +35,11 @@ const Hero: React.FC<HeroProps> = ({ gradients = ['bg-gradient-to-r from-blue-60
         <p className="text-lg md:text-xl mb-10 text-gray-200">
           候補者管理、面接日程調整、評価管理などを一元化し、採用担当者の負担を軽減します。
         </p>
-        <button className="bg-white text-blue-600 font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
-          無料トライアルを開始
-        </button>
+        <Link href="/posts" className="inline-block">
+          <button className="bg-white text-blue-600 font-semibold py-3 px-6 md:py-4 md:px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
+            無料トライアルを開始
+          </button>
+        </Link>
       </div>
     </section>
   );
