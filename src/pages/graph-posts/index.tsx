@@ -12,30 +12,46 @@ interface ChartData {
 }
 
 const GraphPage = () => {
+  const [activeTab, setActiveTab] = useState(() => {
+    if (typeof window !== 'undefined') {
+        return localStorage.getItem('activeTab') || 'barChart2';
+    }
+    return 'barChart2';
+});
+
+useEffect(() => {
+    localStorage.setItem('activeTab', activeTab);
+}, [activeTab]);
+
+const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+};
+
   const [url, setUrl] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const [chartData, setChartData] = useState<ChartData | null>(null);
-  const [activeTab, setActiveTab] = useState("barChart2"); // 初期タブをBarChart2に設定
+
 
   useEffect(() => {
     setIsClient(true);
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/chart-data');
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data: ChartData = await response.json();
-        setChartData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
+    fetchData(); // 初期ロード時にデータを取得
   }, []);
 
+  const fetchData = async () => {
+    try {
+      const response = await fetch('/api/chart-data');
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data: ChartData = await response.json();
+      setChartData(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+ 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(url);
@@ -108,7 +124,7 @@ const GraphPage = () => {
             className={`px-4 py-2 rounded-lg ${
               activeTab === "barChart2" ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
-            onClick={() => setActiveTab("barChart2")}
+            onClick={() => handleTabChange("barChart2")}
           >
             都道府県 : インターン求人数
           </button>
@@ -116,7 +132,7 @@ const GraphPage = () => {
             className={`px-4 py-2 rounded-lg ${
               activeTab === "barChart3" ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
-            onClick={() => setActiveTab("barChart3")}
+            onClick={() => handleTabChange("barChart3")}
           >
             東京 : インターン求人数の推移（1日単位）
           </button>
@@ -124,7 +140,7 @@ const GraphPage = () => {
             className={`px-4 py-2 rounded-lg ${
               activeTab === "barChart" ? "bg-blue-500 text-white" : "bg-gray-200"
             }`}
-            onClick={() => setActiveTab("barChart")}
+            onClick={() => handleTabChange("barChart")}
           >
             株式会社Aの求人 : エントリー数の推移（1日単位）
           </button>
