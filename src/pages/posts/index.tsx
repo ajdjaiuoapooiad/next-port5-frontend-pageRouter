@@ -15,9 +15,9 @@ type Props = {
 export async function getServerSideProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
-    const posts = await axios.get(url);
-    const sortedPosts = posts.data.sort(
-      (a: any, b: any) => parseInt(b.id) - parseInt(a.id)
+    const response = await axios.get(url);
+    const sortedPosts = response.data.sort(
+      (a: Post, b: Post) => Number(b.id) - Number(a.id)
     );
     return {
       props: {
@@ -55,7 +55,7 @@ export default function PostsListPage({ data }: Props) {
         const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
         try {
           await axios.delete(url);
-          setPosts(posts.filter((post) => post.id !== id));
+          setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
           Swal.fire('削除完了', '削除が完了しました。', 'success');
         } catch (error) {
           console.error(error);
