@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 const Navbar: React.FC = () => {
+  const router = useRouter(); // useRouter を初期化
+
   return (
     <div className="bg-gray-800 text-white">
       <nav className="flex justify-between items-center p-4 container mx-auto relative">
@@ -15,23 +18,25 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
 
-        <div className="hidden md:flex space-x-8 font-semibold">
-          <a href="#features" className="hover:text-blue-300 transition-colors duration-300">
-            機能
-          </a>
-          <a href="#pricing" className="hover:text-blue-300 transition-colors duration-300">
-            料金
-          </a>
+        {router.pathname === '/' && ( // トップページでのみナビゲーションリンクを表示
+          <div className="hidden md:flex space-x-8 font-semibold">
+            <a href="#features" className="hover:text-blue-300 transition-colors duration-300">
+              機能
+            </a>
+            <a href="#pricing" className="hover:text-blue-300 transition-colors duration-300">
+              料金
+            </a>
             <a href="#contact" className="hover:text-blue-300 transition-colors duration-300">
-            お問い合わせ
-          </a>
-             <a href="#team" className="hover:text-blue-300 transition-colors duration-300">
-            チーム紹介
-          </a>
+              お問い合わせ
+            </a>
+            <a href="#team" className="hover:text-blue-300 transition-colors duration-300">
+              チーム紹介
+            </a>
             <a href="#faq" className="hover:text-blue-300 transition-colors duration-300">
-            よくある質問
-          </a>
-        </div>
+              よくある質問
+            </a>
+          </div>
+        )}
       </nav>
     </div>
   );
