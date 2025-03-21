@@ -132,6 +132,9 @@ const GraphPage = () => {
           {isClient && <BarChart />} {/* クライアントサイドでのみ描画 */}
         </section>
 
+
+        
+
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             都道府県 : インターン求人数
