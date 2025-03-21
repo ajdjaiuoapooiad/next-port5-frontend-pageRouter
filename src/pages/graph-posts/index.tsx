@@ -145,6 +145,7 @@ const GraphPage = () => {
           </h2>
           {isClient && <BarChart3 />} {/* クライアントサイドでのみ描画 */}
         </section>
+        
       </div>
     </Layout>
   );

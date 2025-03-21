@@ -1,31 +1,38 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import { useState, useEffect } from 'react';
+
 Chart.register(...registerables);
-import data from '../utils/data.json'; // ファイルパスを適切に設定
 
+interface ChartData {
+  chartLabels2: string[];
+  chartData2: number[];
+}
 
+const BarChart: React.FC = () => {
+  const [chartData, setChartData] = useState<ChartData | null>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/chart-data');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data: ChartData = await response.json();
+        setChartData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-const BarChart = () => {
-  const chartData = {
-    labels: data.chartLabels2,
-    datasets: [
-      {
-        label: 'エントリー数',
-        data: data.chartData2,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-      },
-    ],
-  };
-  console.log(chartData);
-  
-
+    fetchData();
+  }, []);
 
   const options = {
     scales: {
       y: {
-        beginAtZero: false, // Y軸の開始を0にしない
+        beginAtZero: false,
       },
       x: {
         ticks: {
@@ -36,9 +43,23 @@ const BarChart = () => {
     },
   };
 
-  return <Line data={chartData} options={options} />;
+  if (!chartData) {
+    return <div>Loading...</div>;
+  }
+
+  const processedData = {
+    labels: chartData.chartLabels2,
+    datasets: [
+      {
+        label: 'エントリー数',
+        data: chartData.chartData2,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+      },
+    ],
+  };
+
+  return <Line data={processedData} options={options} />;
 };
 
 export default BarChart;
-
-
