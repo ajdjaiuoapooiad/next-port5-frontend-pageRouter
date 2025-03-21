@@ -58,3 +58,4 @@ const BarChart3 = () => {
 };
 
 export default BarChart3;
+
