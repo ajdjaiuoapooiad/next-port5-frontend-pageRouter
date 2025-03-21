@@ -78,8 +78,11 @@ const HomePage = () => {
 
       <Hero />
 
-      <Features />
-    
+      <section id="features">
+        <Features />
+      </section>
+
+
       {/* スクリーンショットセクション（改善後） */}
       <section className="bg-gray-400 py-24 px-10 md:px-56">
           <div className="container mx-auto ">
@@ -99,27 +102,31 @@ const HomePage = () => {
           </div>
         </section>
 
-   {/* 画像拡大モーダル */}
-{selectedImage && (
-  <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 flex items-center justify-center">
-    <div className="relative">
-      <img
-        src={selectedImage.src}
-        alt={selectedImage.alt}
-        className="rounded-lg max-w-full max-h-screen"
-      />
-      <button
-        className="absolute top-4 right-4 bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-700 transition-colors duration-300"
-        onClick={handleCloseModal}
-      >
-        &times;
-      </button>
-    </div>
-  </div>
-)}
+        {/* 画像拡大モーダル */}
+      {selectedImage && (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 flex items-center justify-center">
+          <div className="relative">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="rounded-lg max-w-full max-h-screen"
+            />
+            <button
+              className="absolute top-4 right-4 bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-700 transition-colors duration-300"
+              onClick={handleCloseModal}
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
 
-      <Pricing />
+      <section id="pricing">
+        <Pricing />
+      </section>
 
+
+      {/* 導入事例企業 */}
       <section className="py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">導入事例</h2>
@@ -152,7 +159,8 @@ const HomePage = () => {
         </div>
       </section>;
 
-      <section className="bg-gray-100 py-16">
+      {/* チーム紹介 */}
+      <section id="team" className="bg-gray-100 py-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-8">チーム紹介</h2>
           <div className="flex flex-wrap justify-center gap-8">
@@ -188,7 +196,7 @@ const HomePage = () => {
       </section>;
 
       {/* FAQセクション */}
-      <section className="bg-gray-100 py-16">
+      <section id="faq" className="bg-gray-100 py-16">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">よくある質問</h2>
             <div className="space-y-4">

@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
             href="/"
             className="flex items-center hover:text-blue-300 transition-colors duration-300"
           >
-            <img src='\icons\test.svg' alt="Document Icon" className="w-6 h-6 mr-2" />
+            <img src="\icons\test.svg" alt="Document Icon" className="w-6 h-6 mr-2" />
             インターン面接管理アプリ
           </Link>
         </div>
