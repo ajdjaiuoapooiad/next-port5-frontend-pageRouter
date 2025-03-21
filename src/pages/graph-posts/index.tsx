@@ -16,6 +16,7 @@ const GraphPage = () => {
   const [responseData, setResponseData] = useState([]);
   const [isClient, setIsClient] = useState(false);
   const [chartData, setChartData] = useState<ChartData | null>(null);
+  const [activeTab, setActiveTab] = useState("barChart2"); // 初期タブをBarChart2に設定
 
   useEffect(() => {
     setIsClient(true);
@@ -102,16 +103,59 @@ const GraphPage = () => {
 
         <p className="text-2xl font-bold">参考例</p>
 
-        
-
-        <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
-          <h2 className="text-3xl font-semibold text-center mb-8">
+        <div className="flex justify-center space-x-4 mb-8">
+          <button
+            className={`px-4 py-2 rounded-lg ${
+              activeTab === "barChart2" ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setActiveTab("barChart2")}
+          >
             都道府県 : インターン求人数
-          </h2>
-          {isClient && <BarChart2 />}
-        </section>
+          </button>
+          <button
+            className={`px-4 py-2 rounded-lg ${
+              activeTab === "barChart3" ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setActiveTab("barChart3")}
+          >
+            東京 : インターン求人数の推移（1日単位）
+          </button>
+          <button
+            className={`px-4 py-2 rounded-lg ${
+              activeTab === "barChart" ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+            onClick={() => setActiveTab("barChart")}
+          >
+            株式会社Aの求人 : エントリー数の推移（1日単位）
+          </button>
+        </div>
 
-        
+        {activeTab === "barChart2" && (
+          <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
+            <h2 className="text-3xl font-semibold text-center mb-8">
+              都道府県 : インターン求人数
+            </h2>
+            {isClient && <BarChart2 />}
+          </section>
+        )}
+
+        {activeTab === "barChart3" && (
+          <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
+            <h2 className="text-3xl font-semibold text-center mb-8">
+              東京 : インターン求人数の推移（1日単位）
+            </h2>
+            {isClient && <BarChart3 />}
+          </section>
+        )}
+
+        {activeTab === "barChart" && (
+          <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
+            <h2 className="text-3xl font-semibold text-center mb-8">
+              株式会社Aの求人 : エントリー数の推移（1日単位）
+            </h2>
+            {isClient && <BarChart />}
+          </section>
+        )}
       </div>
     </Layout>
   );
