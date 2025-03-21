@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 const Navbar: React.FC = () => {
   return (
-    <div className="bg-gray-800 text-white fixed top-0 w-full z-10"> {/* fixed, top-0, w-full, z-10 を追加 */}
+    <div className="bg-gray-800 text-white">
       <nav className="flex justify-between items-center p-4 container mx-auto relative">
         <div className="text-xl font-bold">
           <Link
