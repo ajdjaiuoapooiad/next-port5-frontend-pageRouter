@@ -5,7 +5,7 @@ import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Head from "next/head";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 
 const prefectureJobCounts = {
   "北海道": 150,
@@ -57,20 +57,22 @@ const prefectureJobCounts = {
   "沖縄県": 90,
 };
 
-
 const GraphPage = () => {
   const labels = Object.keys(prefectureJobCounts);
   const data = Object.values(prefectureJobCounts);
 
   const [url, setUrl] = useState("");
   const [responseData, setResponseData] = useState([]);
+  const [isClient, setIsClient] = useState(false); // クライアントサイドでのみ実行されるように状態を追加
+
+  useEffect(() => {
+    setIsClient(true); // クライアントサイドでのみ実行されるように状態を更新
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     console.log(url);
-  }
-
-
+  };
 
   return (
     <Layout>
@@ -87,7 +89,9 @@ const GraphPage = () => {
 
         <div className="bg-gray-300 rounded-lg shadow-md p-4 md:p-8 my-8">
           <h1 className="font-bold">特定の企業の求人のエントリー数を取得（1日ごとに取得）</h1>
-          <p>このフォームにURLを入力してリンク先の企業の求人のエントリー数を定期的にスクレイピングして記録します。</p>
+          <p>
+            このフォームにURLを入力してリンク先の企業の求人のエントリー数を定期的にスクレイピングして記録します。
+          </p>
           <form onSubmit={handleSubmit}>
             <label>URL:</label>
             <Input
@@ -102,8 +106,10 @@ const GraphPage = () => {
         </div>
 
         <div className="bg-gray-300 rounded-lg shadow-md p-4 md:p-8 my-8">
-        <h1 className="font-bold">特定の都道府県のインターンの求人数を取得（1日ごとに取得）</h1>
-        <p>このフォームにURLを入力してリンク先の都道府県のインターンの求人数を定期的にスクレイピングして記録します。</p>
+          <h1 className="font-bold">特定の都道府県のインターンの求人数を取得（1日ごとに取得）</h1>
+          <p>
+            このフォームにURLを入力してリンク先の都道府県のインターンの求人数を定期的にスクレイピングして記録します。
+          </p>
           <form onSubmit={handleSubmit}>
             <label>URL:</label>
             <Input
@@ -117,28 +123,27 @@ const GraphPage = () => {
           </form>
         </div>
 
-
         <p className="text-2xl font-bold">参考例</p>
 
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             株式会社Aの求人 : エントリー数の推移（1日単位）
           </h2>
-          <BarChart />
+          {isClient && <BarChart />} {/* クライアントサイドでのみ描画 */}
         </section>
 
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             都道府県 : インターン求人数
           </h2>
-          <BarChart2 data={data} labels={labels} />
+          {isClient && <BarChart2 data={data} labels={labels} />} {/* クライアントサイドでのみ描画 */}
         </section>
 
         <section className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
           <h2 className="text-3xl font-semibold text-center mb-8">
             東京 : インターン求人数の推移（1日単位）
           </h2>
-          <BarChart3 />
+          {isClient && <BarChart3 />} {/* クライアントサイドでのみ描画 */}
         </section>
       </div>
     </Layout>
