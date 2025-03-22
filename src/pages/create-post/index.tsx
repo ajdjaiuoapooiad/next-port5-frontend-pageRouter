@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 import Head from "next/head";
 import Layout from "@/components/Layout";
+import Swal from 'sweetalert2';
 
 export default function CreatePost() {
   const [company, setCompany] = useState("");
@@ -20,7 +21,12 @@ export default function CreatePost() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(company, place, selectedValue);
+
+    if (!company || !place || !selectedValue) {
+      Swal.fire('エラー', 'すべてのフィールドを入力してください。', 'error');
+      return;
+    }
+
     const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
 
     try {
@@ -31,7 +37,8 @@ export default function CreatePost() {
       });
       router.push("/posts");
     } catch (error) {
-      alert("投稿に失敗しました");
+      console.error(error);
+      Swal.fire('エラー', '投稿に失敗しました。', 'error');
     }
   };
 
@@ -49,7 +56,7 @@ export default function CreatePost() {
           <h1>企業新規登録</h1>
           <form onSubmit={handleSubmit}>
             <div className="my-5">
-              <label>Company:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-700">Company:</label>
               <Input
                 className="bg-white"
                 type="text"
@@ -59,7 +66,7 @@ export default function CreatePost() {
             </div>
 
             <div className="my-5">
-              <label>Place:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-700">Place:</label>
               <Input
                 className="bg-white"
                 type="text"
@@ -69,7 +76,7 @@ export default function CreatePost() {
             </div>
 
             <div className="my-3">
-              <label>Status:</label>
+              <label className="block mb-2 text-sm font-medium text-gray-700">Status:</label>
               <select
                 className="mx-5 my-5 p-2 rounded-lg"
                 value={selectedValue}
