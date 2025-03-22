@@ -36,6 +36,8 @@ export default function CreatePost() {
         status: selectedValue,
       });
       router.push("/posts");
+      router.prefetch("/posts");
+      // リダイレクト後に不要な処理がないか確認
     } catch (error) {
       console.error(error);
       Swal.fire('エラー', '投稿に失敗しました。', 'error');
