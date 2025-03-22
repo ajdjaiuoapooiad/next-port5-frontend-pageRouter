@@ -2,6 +2,40 @@
   <img src="https://github.com/ajdjaiuoapooiad/next-port5-frontend-pageRouter/raw/main/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter%20(1).gif" alt="デモ動画" width="600" style="border-radius: 10px;">
 </p>
 
+
+<span style="background-color:yellow;">## 面接官向け テスト方法 (簡易版)</span>
+
+### <span style="color:red;">1. スクレイピング機能</span>
+
+* Wantedlyの求人URLを入力し、データが表示されるか確認
+* 異なる求人URLで試して、データが正しく表示されるか確認
+
+### <span style="color:blue;">2. 応募企業管理</span>
+
+* 企業情報を登録、編集、削除できるか確認
+* 必須項目が正しく機能しているか確認
+
+### <span style="color:green;">3. 選考結果分析</span>
+
+* 選考結果を複数登録し、グラフで表示されるか確認
+* グラフの表示が登録したデータと一致しているか確認
+
+### <span style="color:purple;">4. レスポンシブデザイン</span>
+
+* PCとスマホで表示し、レイアウトが崩れないか確認
+* 画面サイズを変更し、レイアウトが適切に調整されるか確認
+
+### 5. APIテスト
+
+* Postmanでスクレイピング、企業情報関連のAPIが動作するか確認
+* APIのレスポンスが期待通りのデータ形式であることを確認
+
+### 6. エラーハンドリング
+
+* 無効なURLや不正なデータを入力し、エラーメッセージが適切に表示されるか確認
+
+
+
 # Wantedly 長期インターン管理アプリ
 
 ## 概要
@@ -103,37 +137,6 @@ Wantedlyで見つけた長期インターンシップの選考プロセスを効
 * レスポンシブデザイン
 * テストとデバッグ
 * プロジェクト管理
-
-<span style="background-color:yellow;">## 面接官向け テスト方法 (簡易版)</span>
-
-### <span style="color:red;">1. スクレイピング機能</span>
-
-* Wantedlyの求人URLを入力し、データが表示されるか確認
-* 異なる求人URLで試して、データが正しく表示されるか確認
-
-### <span style="color:blue;">2. 応募企業管理</span>
-
-* 企業情報を登録、編集、削除できるか確認
-* 必須項目が正しく機能しているか確認
-
-### <span style="color:green;">3. 選考結果分析</span>
-
-* 選考結果を複数登録し、グラフで表示されるか確認
-* グラフの表示が登録したデータと一致しているか確認
-
-### <span style="color:purple;">4. レスポンシブデザイン</span>
-
-* PCとスマホで表示し、レイアウトが崩れないか確認
-* 画面サイズを変更し、レイアウトが適切に調整されるか確認
-
-### 5. APIテスト
-
-* Postmanでスクレイピング、企業情報関連のAPIが動作するか確認
-* APIのレスポンスが期待通りのデータ形式であることを確認
-
-### 6. エラーハンドリング
-
-* 無効なURLや不正なデータを入力し、エラーメッセージが適切に表示されるか確認
 
 ## 動作確認方法
 
