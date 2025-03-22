@@ -41,6 +41,7 @@ export default function EditPost({ post }: Props) {
       });
       Swal.fire("更新完了", "投稿を更新しました。", "success");
       router.push("/posts");
+      router.prefetch('/posts');
     } catch (error) {
       console.error(error);
       Swal.fire("エラー", "投稿の更新に失敗しました。", "error");
