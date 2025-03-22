@@ -9,10 +9,10 @@ import Swal from 'sweetalert2';
 import Layout from "@/components/Layout";
 
 type Props = {
-  data: Post[];
+  initialData: Post[];
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
     const response = await axios.get(url);
@@ -21,22 +21,24 @@ export async function getServerSideProps() {
     );
     return {
       props: {
-        data: sortedPosts,
+        initialData: sortedPosts,
       },
+      revalidate: 60, // データの更新頻度に合わせて調整
     };
   } catch (error) {
     console.error(error);
     return {
       props: {
-        data: [],
+        initialData: [],
       },
+      revalidate: 60,
     };
   }
 }
 
-export default function PostsListPage({ data }: Props) {
+export default function PostsListPage({ initialData }: Props) {
   const router = useRouter();
-  const [posts, setPosts] = useState<Post[]>(data);
+  const [posts, setPosts] = useState<Post[]>(initialData);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async (id: string) => {
