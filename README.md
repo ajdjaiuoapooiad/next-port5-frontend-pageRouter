@@ -4,13 +4,15 @@
   <img src="https://github.com/ajdjaiuoapooiad/next-port5-frontend-pageRouter/raw/main/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter%20(1).gif" alt="デモ動画" width="600" style="border-radius: 10px;">
 </p>
 
-
+## URL  
+https://next-port5-frontend-page-router-jbzh.vercel.app/
 
 ## 面接官向け テスト方法 (簡易版)
 
 ### 1. スクレイピング機能
-* Wantedlyの求人URLを入力し、データが表示されるか確認
-* 異なる求人URLで試して、データが正しく表示されるか確認
+* Wantedlyの求人URLを入力し、データが表示されるか確認  
+テスト用URL  
+https://www.wantedly.com/projects?new=true&page=1&occupationTypes=jp__engineering&hiringTypes=internship&areas=tokyo&order=mixed  
 
 ### 2. 応募企業管理
 
