@@ -16,7 +16,7 @@ https://next-port5-frontend-page-router-jbzh.vercel.app/
 テスト用URL  
 https://www.wantedly.com/projects?new=true&page=1&occupationTypes=jp__engineering&hiringTypes=internship&areas=tokyo&order=mixed  
 
-### 2. 応募企業管理
+### 2. 応募企業管理(CRUD機能)
 
 * 企業情報を登録、編集、削除できるか確認
 * 必須項目が正しく機能しているか確認
