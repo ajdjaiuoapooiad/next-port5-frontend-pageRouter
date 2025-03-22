@@ -57,6 +57,7 @@ export default function PostsListPage({ initialData }: Props) {
         const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
         try {
           await axios.delete(url);
+          // クライアントサイドでデータを更新
           setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
           Swal.fire('削除完了', '削除が完了しました。', 'success');
         } catch (error) {
