@@ -9,6 +9,8 @@ https://next-port5-frontend-page-router-jbzh.vercel.app/
 
 ## 面接官向け テスト方法 (簡易版)
 
+無料トライアルを開始するボタンからダッシュボードへ移動します。　　
+
 ### 1. スクレイピング機能
 * Wantedlyの求人URLを入力し、データが表示されるか確認  
 テスト用URL  
