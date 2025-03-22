@@ -23,7 +23,7 @@ export async function getStaticProps() {
       props: {
         initialData: sortedPosts,
       },
-      revalidate: 60, // データの更新頻度に合わせて調整
+      revalidate: 2, // データの更新頻度に合わせて調整
     };
   } catch (error) {
     console.error(error);
