@@ -8,6 +8,7 @@ import React, { FormEvent, useState } from "react";
 import Layout from "@/components/Layout";
 import Head from "next/head";
 import { cn } from "@/lib/utils";
+import { saveAs } from 'file-saver'; // file-saverをインポート
 
 const ScrapePostsList = () => {
   const [url, setUrl] = useState("");
@@ -33,6 +34,32 @@ const ScrapePostsList = () => {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleDownloadCSV = () => {
+    if (!responseData || responseData.length === 0) {
+      return;
+    }
+
+    const csvRows = [];
+    const headers = Object.keys(responseData[0]);
+    csvRows.push(headers.join(','));
+
+    responseData.forEach((job: Job) => {
+      const values = headers.map(header => {
+        let value = job[header as keyof Job];
+        if (typeof value === 'string') {
+          value = value.replace(/"/g, '""'); // ダブルクォートをエスケープ
+          return `"${value}"`; // 値をダブルクォートで囲む
+        }
+        return value;
+      });
+      csvRows.push(values.join(','));
+    });
+
+    const csvString = csvRows.join('\n');
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'jobs.csv');
   };
 
   return (
@@ -163,6 +190,7 @@ const ScrapePostsList = () => {
                   </tbody>
                 </table>
               </div>
+              <Button onClick={handleDownloadCSV} className="mt-4">CSVダウンロード</Button>
             </div>
           )}
         </div>
