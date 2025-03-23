@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname } from 'next/navigation'; // useRouter と usePathname をインポート
+import Image from 'next/image'; // Image コンポーネントをインポート
 
 const Navbar: React.FC = () => {
-  const router = useRouter(); // useRouter を初期化
+  const pathname = usePathname(); // 現在のパスを取得
 
   return (
     <div className="bg-gray-800 text-white">
@@ -13,12 +14,12 @@ const Navbar: React.FC = () => {
             href="/"
             className="flex items-center hover:text-blue-300 transition-colors duration-300"
           >
-            <img src="\icons\test.svg" alt="Document Icon" className="w-6 h-6 mr-2" />
+            <Image src="/icons/test.svg" alt="Document Icon" width={24} height={24} className="mr-2" />
             インターン面接管理アプリ
           </Link>
         </div>
 
-        {router.pathname === '/' && ( // トップページでのみナビゲーションリンクを表示
+        {pathname === '/' && ( // トップページでのみナビゲーションリンクを表示
           <div className="hidden md:flex space-x-8 font-semibold">
             <a href="#features" className="hover:text-blue-300 transition-colors duration-300">
               機能

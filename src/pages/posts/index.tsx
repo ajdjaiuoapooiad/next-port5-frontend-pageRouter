@@ -13,13 +13,15 @@ type Props = {
   initialData: Post[];
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
     const response = await axios.get(url);
     const sortedPosts = response.data.sort(
       (a: Post, b: Post) => Number(b.id) - Number(a.id)
     );
+    // キャッシュ制御ヘッダーを追加
+    res.setHeader('Cache-Control', 'no-store');
     return {
       props: {
         initialData: sortedPosts,
@@ -59,8 +61,8 @@ export default function PostsListPage({ initialData }: Props) {
           // クライアントサイドでデータを更新
           setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
           Swal.fire('削除完了', '削除が完了しました。', 'success');
-           // ページを再読み込み
-           router.replace(window.location.pathname);
+          // ページをリフレッシュしてgetServerSidePropsを再度呼び出す
+          router.refresh();
         } catch (error) {
           console.error(error);
           Swal.fire('エラー', '削除に失敗しました。', 'error');
