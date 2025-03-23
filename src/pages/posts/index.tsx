@@ -7,12 +7,13 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Swal from 'sweetalert2';
 import Layout from "@/components/Layout";
+import { GetServerSideProps } from 'next';
 
 type Props = {
   initialData: Post[];
 };
 
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const url = `${process.env.NEXT_PUBLIC_API_URL}/device/`;
   try {
     const response = await axios.get(url);
@@ -23,7 +24,6 @@ export async function getStaticProps() {
       props: {
         initialData: sortedPosts,
       },
-      revalidate: 1, // データの更新頻度に合わせて調整
     };
   } catch (error) {
     console.error(error);
@@ -31,10 +31,9 @@ export async function getStaticProps() {
       props: {
         initialData: [],
       },
-      revalidate: 60,
     };
   }
-}
+};
 
 export default function PostsListPage({ initialData }: Props) {
   const router = useRouter();
@@ -60,6 +59,8 @@ export default function PostsListPage({ initialData }: Props) {
           // クライアントサイドでデータを更新
           setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
           Swal.fire('削除完了', '削除が完了しました。', 'success');
+           // ページを再読み込み
+           router.replace(window.location.pathname);
         } catch (error) {
           console.error(error);
           Swal.fire('エラー', '削除に失敗しました。', 'error');
