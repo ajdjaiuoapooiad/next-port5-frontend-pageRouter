@@ -39,27 +39,27 @@ const HomePage = () => {
     {
       src: '/images/screenshot/image.png',
       alt: 'Screenshot 1',
-      description: 'スケジュール管理画面のスクリーンショットです。',
+      description: '東京 : インターン求人数の推移（1日単位）グラフ',
     },
     {
       src: '/images/screenshot/image3.png',
       alt: 'Screenshot 2',
-      description: '評価管理画面のスクリーンショットです。',
+      description: '都道府県 : インターン求人数のグラフ',
     },
     {
       src: '/images/screenshot/image4.png',
       alt: 'Screenshot 3',
-      description: 'レポート画面のスクリーンショットです。',
+      description: 'ダッシュボード : 企業一覧ページ',
     },
     {
       src: '/images/screenshot/image5.png',
       alt: 'Screenshot 4',
-      description: 'ダッシュボード画面のスクリーンショットです。',
+      description: 'ダッシュボード : スクレイピングページ',
     },
     {
       src: '/images/screenshot/image2.png',
       alt: 'Screenshot 5',
-      description: '設定画面のスクリーンショットです。',
+      description: '株式会社Aの求人 : エントリー数の推移（1日単位）グラフ',
     },
     {
       src: '/images/GIF/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter (1).gif',

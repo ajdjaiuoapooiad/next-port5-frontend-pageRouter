@@ -9,27 +9,27 @@ type NavLink = {
 const links: NavLink[] = [
   {
     href: '/create-post',
-    label: 'create Jobs',
+    label: '新規登録',
     icon: <Layers />,
   },
   {
     href: '/posts',
-    label: 'all jobs',
+    label: '企業一覧ページ',
     icon: <AppWindow />,
   },
   {
     href: '/graph-posts',
-    label: 'graph Jobs',
+    label: 'グラフ',
     icon: <AreaChart />,
   },
   {
     href: '/scrape-posts',
-    label: 'scrape Jobs',
+    label: 'スクレイピング',
     icon: <AreaChart />,
   },
   {
     href: '/scrape-createPosts',
-    label: 'Scrape&Create Jobs',
+    label: 'スクレイピング＆新規登録',
     icon: <AreaChart />,
   },
 ];
