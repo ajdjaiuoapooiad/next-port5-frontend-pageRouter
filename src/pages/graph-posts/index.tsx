@@ -92,6 +92,7 @@ const handleTabChange = (tab: string) => {
               className="bg-white"
               type="text"
               name="url"
+              placeholder="https://example.com/jobs"
               onChange={(e) => setUrl(e.target.value)}
             />
 
@@ -110,6 +111,7 @@ const handleTabChange = (tab: string) => {
               className="bg-white"
               type="text"
               name="url"
+              placeholder="https://example.com/jobs"
               onChange={(e) => setUrl(e.target.value)}
             />
 

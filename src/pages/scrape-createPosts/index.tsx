@@ -44,7 +44,7 @@ const ScrapeCreatePage = () => {
       </Head>
 
       <div className="p-4 md:p-8">
-        <div className="bg-white rounded-lg shadow-md p-4 md:p-8 my-8">
+        <div className="bg-gray-300 rounded-lg shadow-md p-4 md:p-8 my-8">
           <h1>ScrapeCreatePage</h1>
           <p>このページでは、URLを入力してリンク先の求人を一括で登録できます。</p>
           <form onSubmit={handleSubmit}>
@@ -53,6 +53,7 @@ const ScrapeCreatePage = () => {
               className="bg-white"
               type="text"
               name="url"
+              placeholder="https://example.com/jobs"
               onChange={(e) => setUrl(e.target.value)}
             />
 

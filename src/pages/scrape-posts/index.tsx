@@ -46,7 +46,7 @@ const ScrapePostsList = () => {
 
       <div className="p-4 md:p-8">
         
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8 mb-8">
+        <div className="bg-gray-300 rounded-lg shadow-md p-6 md:p-8 mb-8">
           <h1 className="text-2xl font-bold mb-4">ScrapePage</h1>
           <p className="text-gray-600 mb-6">
             このページでは、URLを入力してリンク先の求人を一括で取得できます。
@@ -55,7 +55,7 @@ const ScrapePostsList = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700">URL:</label>
               <Input
-                className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                 type="text"
                 name="url"
                 placeholder="https://example.com/jobs"
@@ -71,7 +71,7 @@ const ScrapePostsList = () => {
           </form>
         </div>
 
-        <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
+        <div className="bg-gray-300 rounded-lg shadow-md p-6 md:p-8">
           <h1 className="text-2xl font-bold mb-4">出力結果</h1>
           {responseData && (
             <div>

@@ -54,7 +54,7 @@ export default function CreatePost() {
       </Head>
 
       <div className="p-4 md:p-8">
-        <div className="bg-white rounded-lg shadow-md p-4 md:p-8 w-full md:w-1/2 mx-auto">
+        <div className="bg-gray-300 rounded-lg shadow-md p-4 md:p-8 w-full md:w-1/2 mx-auto">
           <h1>企業新規登録</h1>
           <form onSubmit={handleSubmit}>
             <div className="my-5">
