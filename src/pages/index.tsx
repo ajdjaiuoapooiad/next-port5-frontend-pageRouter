@@ -14,20 +14,18 @@ import { Button } from '@/components/ui/button'
 import Sidebar from '@/components/Sidebar'
 import CompanySection from '@/components/CompanySection'
 import TeamSection from '@/components/TeamSection'
+import ImageModal from '@/components/ImageModal'
+import { Screenshot } from '@/utils/types'
 
 
-interface Screenshot {
-  src: string;
-  alt: string;
-}
 
 const HomePage = () => {
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
-    const toggleSidebar = () => {
-      setIsSidebarOpen(!isSidebarOpen);
-    };
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const settings = {
     dots: true,
@@ -38,12 +36,36 @@ const HomePage = () => {
   };
 
   const screenshots: Screenshot[] = [
-    { src: '/images/screenshot/image.png', alt: 'Screenshot 1' },
-    { src: '/images/screenshot/image3.png', alt: 'Screenshot 2' },
-    { src: '/images/screenshot/image4.png', alt: 'Screenshot 3' },
-    { src: '/images/screenshot/image5.png', alt: 'Screenshot 4' },
-    { src: '/images/screenshot/image2.png', alt: 'Screenshot 5' },
-    { src: '/images/GIF/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter (1).gif', alt: 'Screenshot 6' },
+    {
+      src: '/images/screenshot/image.png',
+      alt: 'Screenshot 1',
+      description: 'スケジュール管理画面のスクリーンショットです。',
+    },
+    {
+      src: '/images/screenshot/image3.png',
+      alt: 'Screenshot 2',
+      description: '評価管理画面のスクリーンショットです。',
+    },
+    {
+      src: '/images/screenshot/image4.png',
+      alt: 'Screenshot 3',
+      description: 'レポート画面のスクリーンショットです。',
+    },
+    {
+      src: '/images/screenshot/image5.png',
+      alt: 'Screenshot 4',
+      description: 'ダッシュボード画面のスクリーンショットです。',
+    },
+    {
+      src: '/images/screenshot/image2.png',
+      alt: 'Screenshot 5',
+      description: '設定画面のスクリーンショットです。',
+    },
+    {
+      src: '/images/GIF/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter (1).gif',
+      alt: 'Screenshot 6',
+      description: 'デモ動画です。',
+    },
   ];
 
   const handleImageClick = (image: Screenshot) => {
@@ -55,8 +77,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className='bg-gray-50'>
-
+    <div className="bg-gray-50">
       <Navbar />
       <Head>
         <title>トップページ</title>
@@ -65,42 +86,39 @@ const HomePage = () => {
         <link rel="icon" href="/icons/test.svg" />
       </Head>
 
-    <div className="min-h-screen bg-gray-100">
-      <Button
-        onClick={toggleSidebar}
-        className="absolute top-3 right-4 md:hidden "
-      >
-        {isSidebarOpen ? "✕" : "☰"}
-      </Button>
+      <div className="min-h-screen bg-gray-100">
+        <Button onClick={toggleSidebar} className="absolute top-3 right-4 md:hidden ">
+          {isSidebarOpen ? '✕' : '☰'}
+        </Button>
 
-      <div className="grid md:grid-cols-5">
-        {isSidebarOpen && (
-          <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        )}
-      </div>
+        <div className="grid md:grid-cols-5">
+          {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
+        </div>
 
-      {/* Hero */}
-      <Hero />
+        {/* Hero */}
+        <Hero />
 
-      {/* Features  */}
-      <section id="features">
-        <Features />
-      </section>
+        {/* Features  */}
+        <section id="features">
+          <Features />
+        </section>
 
-
-      {/* スクリーンショットセクション（改善後） */}
-      <section className="bg-gray-400 py-24 px-0  md:px-56">
+        {/* スクリーンショットセクション（改善後） */}
+        <section className="bg-gray-400 py-24 px-0  md:px-56">
           <div className="container mx-auto ">
             <h2 className="text-3xl font-bold text-white text-center mb-8">スクリーンショット</h2>
             <Slider {...settings}>
               {screenshots.map((screenshot, index) => (
                 <div key={index} className="px-4">
-                  <img
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    className="rounded-lg cursor-pointer mx-auto"
-                    onClick={() => handleImageClick(screenshot)}
-                  />
+                  <div className="mb-4">
+                    <img
+                      src={screenshot.src}
+                      alt={screenshot.alt}
+                      className="rounded-lg cursor-pointer mx-auto"
+                      onClick={() => handleImageClick(screenshot)}
+                    />
+                  </div>
+                  <p className="text-center text-white">{screenshot.description}</p>
                 </div>
               ))}
             </Slider>
@@ -108,23 +126,7 @@ const HomePage = () => {
         </section>
 
         {/* 画像拡大モーダル */}
-      {selectedImage && (
-        <div className="fixed top-0 left-0 w-full h-full  bg-gray-900 bg-opacity-90 flex items-center justify-center">
-          <div className="relative">
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="rounded-lg max-w-full max-h-screen"
-            />
-            <button
-              className="absolute top-4 right-4 bg-gray-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl hover:bg-gray-700 transition-colors duration-300"
-              onClick={handleCloseModal}
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
+        <ImageModal selectedImage={selectedImage} onClose={handleCloseModal} />
 
       <section id="pricing">
         <Pricing />

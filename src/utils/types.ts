@@ -16,14 +16,20 @@ export interface Job {
 export interface ChartData {
     labels: string[];
     datasets: {
-      label: string;
-      data: number[];
-      borderColor: string;
-      tension?: number;
+    label: string;
+    data: number[];
+    borderColor: string;
+    tension?: number;
     }[];
-  }
-  
-  export interface Chart3Data {
-      chartLabels3: string[];
-      chartData3: number[];
-  }
+}
+
+export interface Chart3Data {
+    chartLabels3: string[];
+    chartData3: number[];
+}
+
+export interface Screenshot {
+src: string;
+alt: string;
+description: string;
+}
