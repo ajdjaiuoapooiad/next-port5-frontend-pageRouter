@@ -41,6 +41,7 @@ const HomePage = () => {
     { src: '/images/screenshot/image4.png', alt: 'Screenshot 3' },
     { src: '/images/screenshot/image5.png', alt: 'Screenshot 4' },
     { src: '/images/screenshot/image2.png', alt: 'Screenshot 5' },
+    { src: '/images/GIF/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter (1).gif', alt: 'Screenshot 6' },
   ];
 
   const handleImageClick = (image: Screenshot) => {
@@ -84,7 +85,7 @@ const HomePage = () => {
 
 
       {/* スクリーンショットセクション（改善後） */}
-      <section className="bg-gray-400 py-24 px-10 md:px-56">
+      <section className="bg-gray-400 py-24 px-2 md:px-56">
           <div className="container mx-auto ">
             <h2 className="text-3xl font-bold text-white text-center mb-8">スクリーンショット</h2>
             <Slider {...settings}>
@@ -104,7 +105,7 @@ const HomePage = () => {
 
         {/* 画像拡大モーダル */}
       {selectedImage && (
-        <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-90 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full  bg-gray-900 bg-opacity-90 flex items-center justify-center">
           <div className="relative">
             <img
               src={selectedImage.src}
