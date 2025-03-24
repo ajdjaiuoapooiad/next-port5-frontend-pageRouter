@@ -102,7 +102,14 @@ const ScrapePostsList = () => {
           <h1 className="text-2xl font-bold mb-4">出力結果</h1>
           {responseData && (
             <div>
+
+              <div className="flex justify-end"> {/* 追加: ボタンを右寄せにする */}
+                <Button onClick={handleDownloadCSV} className="mt-4">
+                  CSVダウンロード
+                </Button>
+              </div>
               <h2 className="text-lg font-semibold mb-4">レスポンスデータ:</h2>
+              
 
               <div className="overflow-x-auto rounded-md">
                 <table className="min-w-full table-auto divide-y divide-gray-200">
@@ -190,7 +197,7 @@ const ScrapePostsList = () => {
                   </tbody>
                 </table>
               </div>
-              <Button onClick={handleDownloadCSV} className="mt-4">CSVダウンロード</Button>
+              
             </div>
           )}
         </div>
