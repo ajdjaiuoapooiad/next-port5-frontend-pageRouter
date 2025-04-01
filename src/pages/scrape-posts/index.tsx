@@ -75,7 +75,6 @@ const ScrapePostsList = () => {
         <title>ダッシュボード : スクレイピングページ</title>
         <meta name="description" content="スクレイピングページ" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/icons/test.svg" />
       </Head>
 
       <div className="p-4 md:p-8">
