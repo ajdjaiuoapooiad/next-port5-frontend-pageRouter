@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   const pathname = usePathname(); // 現在のパスを取得
 
   return (
-    <div className="bg-gray-800 text-white">
+    <div className="bg-gradient-to-r from-purple-800 to-blue-600 text-white shadow-md">
       <nav className="flex justify-between items-center p-4 container mx-auto relative">
         <div className="text-xl font-bold">
           <Link
