@@ -12,7 +12,7 @@ const ScrapeCreatePage = () => {
   const router = useRouter();
   const [responseData, setResponseData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError]: any = useState(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

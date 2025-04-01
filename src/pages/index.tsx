@@ -1,21 +1,21 @@
-import BarChart from '@/components/BarChart'
-import Contact from '@/components/Contact'
-import Features from '@/components/Features'
-import Hero from '@/components/Hero'
-import Pricing from '@/components/Pricing'
-import Head from 'next/head'
-import Image from 'next/image'
-import React, { useState } from 'react'
+import BarChart from '@/components/BarChart';
+import Contact from '@/components/Contact';
+import Features from '@/components/Features';
+import Hero from '@/components/Hero';
+import Pricing from '@/components/Pricing';
+import Head from 'next/head';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Navbar from '@/components/Navbar'
-import { Button } from '@/components/ui/button'
-import Sidebar from '@/components/Sidebar'
-import CompanySection from '@/components/CompanySection'
-import TeamSection from '@/components/TeamSection'
-import ImageModal from '@/components/ImageModal'
-import { Screenshot } from '@/utils/types'
+import Navbar from '@/components/Navbar';
+import { Button } from '@/components/ui/button';
+import Sidebar from '@/components/Sidebar';
+import CompanySection from '@/components/CompanySection';
+import TeamSection from '@/components/TeamSection';
+import ImageModal from '@/components/ImageModal';
+import { Screenshot } from '@/utils/types';
 
 const HomePage = () => {
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
@@ -31,8 +31,8 @@ const HomePage = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, // 自動スクロールを有効にする
-    autoplaySpeed: 3000, // 5秒ごとに次のスクリーンショットを表示
+    autoplay: true,
+    autoplaySpeed: 3000,
   };
 
   const screenshots: Screenshot[] = [
@@ -77,7 +77,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-100">
       <Navbar />
       <Head>
         <title>トップページ</title>
@@ -86,8 +86,8 @@ const HomePage = () => {
         <link rel="icon" href="/icons/test.svg" />
       </Head>
 
-      <div className="min-h-screen bg-gray-100">
-        <Button onClick={toggleSidebar} className="absolute top-3 right-4 md:hidden ">
+      <div className="min-h-screen">
+        <Button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300" onClick={toggleSidebar}>
           {isSidebarOpen ? '✕' : '☰'}
         </Button>
 
@@ -96,17 +96,19 @@ const HomePage = () => {
         </div>
 
         {/* Hero */}
-        <Hero />
+        <section className="bg-white py-5">
+          <Hero />
+        </section>
 
         {/* Features  */}
-        <section id="features">
+        <section id="features" className="bg-gray-200 py-16">
           <Features />
         </section>
 
-        {/* スクリーンショットセクション（改善後） */}
-        <section className="bg-gray-400 py-24 px-0  md:px-56">
-          <div className="container mx-auto ">
-            <h2 className="text-3xl font-bold text-white text-center mb-8">スクリーンショット</h2>
+        {/* スクリーンショットセクション */}
+        <section className="bg-white py-24 px-0 md:px-56">
+          <div className="container mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
             <Slider {...settings}>
               {screenshots.map((screenshot, index) => (
                 <div key={index} className="px-4">
@@ -118,7 +120,7 @@ const HomePage = () => {
                       onClick={() => handleImageClick(screenshot)}
                     />
                   </div>
-                  <p className="text-center text-white">{screenshot.description}</p>
+                  <p className="text-center text-gray-700">{screenshot.description}</p>
                 </div>
               ))}
             </Slider>
@@ -128,7 +130,7 @@ const HomePage = () => {
         {/* 画像拡大モーダル */}
         <ImageModal selectedImage={selectedImage} onClose={handleCloseModal} />
 
-        <section id="pricing">
+        <section id="pricing" className="bg-gray-200 py-16">
           <Pricing />
         </section>
 
@@ -136,10 +138,12 @@ const HomePage = () => {
         <CompanySection />
 
         {/* チーム紹介 */}
-        <TeamSection />
+        <section className="bg-gray-200 py-16">
+          <TeamSection />
+        </section>
 
         {/* FAQセクション */}
-        <section id="faq" className="bg-gray-100 py-16">
+        <section id="faq" className="bg-white py-16">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">よくある質問</h2>
             <div className="space-y-4">

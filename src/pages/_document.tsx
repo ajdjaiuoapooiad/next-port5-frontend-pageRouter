@@ -4,9 +4,7 @@ export default function Document() {
   return (
     <Html lang="ja">
       <Head>
-        <title>トップページ</title>
-        <meta name="description" content="求人情報一覧ページ" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>インターン面接管理アプリ</title>
         <link rel="icon" href="/icons/test.svg" />
       </Head>
       <body>
