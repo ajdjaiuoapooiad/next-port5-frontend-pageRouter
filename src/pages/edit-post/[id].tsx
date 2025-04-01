@@ -19,7 +19,7 @@ export default function EditPost({ post }: Props) {
   const [selectedValue, setSelectedValue] = useState(post.status);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError]: any = useState(null);
 
   const handleCompanyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCompany(e.target.value);
