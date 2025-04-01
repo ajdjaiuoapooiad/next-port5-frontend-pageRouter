@@ -74,7 +74,13 @@ export default function PostsListPage({ initialData }: Props) {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-screen">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      </Layout>
+    );
   }
 
   return (
@@ -91,24 +97,25 @@ export default function PostsListPage({ initialData }: Props) {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="bg-white rounded-lg shadow-md p-4 md:p-8 hover:shadow-lg transition-shadow duration-300"
+              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
             >
-              <h2 className="text-xl font-semibold mb-2">{post.company}</h2>
-              <p className="text-gray-600 mb-1">勤務地: {post.place}</p>
-              <p className="text-gray-600 mb-3">応募状況: {post.status}</p>
+              <h2 className="text-xl font-semibold mb-3">{post.company}</h2>
+              <p className="text-gray-600 mb-2">勤務地: {post.place}</p>
+              <p className="text-gray-600 mb-4">応募状況: {post.status}</p>
 
-              <div className="flex justify-between items-center mt-4">
-                <a href={`/edit-post/${post.id}/`} className="flex-grow mr-2">
-                  <Button className="w-full">編集</Button>
-                </a>
+              <div className="flex flex-col space-y-2">
+                <Button
+                  onClick={() => router.push(`/edit-post/${post.id}/`)}
+                  className="w-full"
+                >
+                  編集
+                </Button>
                 <Button
                   onClick={() => handleDelete(post.id)}
                   className="w-full bg-red-500 hover:bg-red-600 text-white"
                 >
                   削除
                 </Button>
-              </div>
-              <div className="mt-2">
                 <Button
                   onClick={() => router.push(`/posts/${post.id}`)}
                   className="w-full bg-blue-500 hover:bg-blue-600 text-white"

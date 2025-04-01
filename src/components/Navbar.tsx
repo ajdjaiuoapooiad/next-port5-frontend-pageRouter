@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
       <nav className="flex justify-between items-center p-4 container mx-auto relative">
         <div className="text-xl font-bold">
           <Link
-            href="/"
+            href="/posts"
             className="flex items-center hover:text-blue-300 transition-colors duration-300"
           >
             <Image src="/icons/test.svg" alt="Document Icon" width={24} height={24} className="mr-2" />
