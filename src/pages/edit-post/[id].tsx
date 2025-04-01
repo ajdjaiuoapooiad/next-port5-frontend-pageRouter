@@ -19,6 +19,7 @@ export default function EditPost({ post }: Props) {
   const [selectedValue, setSelectedValue] = useState(post.status);
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleCompanyChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCompany(e.target.value);
@@ -31,6 +32,7 @@ export default function EditPost({ post }: Props) {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
     const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${post.id}/`;
 
     try {
@@ -44,6 +46,7 @@ export default function EditPost({ post }: Props) {
       router.prefetch('/posts');
     } catch (error) {
       console.error(error);
+      setError("投稿の更新に失敗しました。");
       Swal.fire("エラー", "投稿の更新に失敗しました。", "error");
     } finally {
       setIsLoading(false);
@@ -101,6 +104,7 @@ export default function EditPost({ post }: Props) {
               {isLoading ? "更新中..." : "Update"}
             </Button>
           </form>
+          {error && <p className="text-red-500">{error}</p>}
         </div>
       </div>
     </Layout>

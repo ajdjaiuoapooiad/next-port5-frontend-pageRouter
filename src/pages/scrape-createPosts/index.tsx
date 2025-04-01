@@ -11,9 +11,13 @@ const ScrapeCreatePage = () => {
   const [url, setUrl] = useState("");
   const router = useRouter();
   const [responseData, setResponseData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError(null);
     console.log(url);
     const formData = new FormData();
     formData.append("url", url);
@@ -31,6 +35,9 @@ const ScrapeCreatePage = () => {
       router.push("/posts");
     } catch (err) {
       console.error(err);
+      setError("データの登録に失敗しました。");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -57,8 +64,17 @@ const ScrapeCreatePage = () => {
               onChange={(e) => setUrl(e.target.value)}
             />
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <div className="flex justify-center items-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </Button>
           </form>
+          {error && <p className="text-red-500">{error}</p>}
         </div>
       </div>
     </Layout>

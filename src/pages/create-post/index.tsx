@@ -14,6 +14,8 @@ export default function CreatePost() {
   const [selectedValue, setSelectedValue] = useState("");
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -21,9 +23,12 @@ export default function CreatePost() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError(null);
 
     if (!company || !place || !selectedValue) {
       Swal.fire('エラー', 'すべてのフィールドを入力してください。', 'error');
+      setIsLoading(false);
       return;
     }
 
@@ -37,10 +42,12 @@ export default function CreatePost() {
       });
       router.push("/posts");
       router.prefetch("/posts");
-      // リダイレクト後に不要な処理がないか確認
     } catch (error) {
       console.error(error);
+      setError("投稿に失敗しました。");
       Swal.fire('エラー', '投稿に失敗しました。', 'error');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,8 +98,17 @@ export default function CreatePost() {
               </select>
             </div>
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <div className="flex justify-center items-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+              ) : (
+                "Submit"
+              )}
+            </Button>
           </form>
+          {error && <p className="text-red-500">{error}</p>}
         </div>
       </div>
     </Layout>

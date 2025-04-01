@@ -11,6 +11,7 @@ import { GetServerSideProps } from 'next';
 
 type Props = {
   initialData: Post[];
+  error?: string; // エラーメッセージを追加
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => {
@@ -32,15 +33,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ res }) => 
     return {
       props: {
         initialData: [],
+        error: "データの取得に失敗しました。", // エラーメッセージを設定
       },
     };
   }
 };
 
-export default function PostsListPage({ initialData }: Props) {
+export default function PostsListPage({ initialData, error }: Props) {
   const router = useRouter();
   const [posts, setPosts] = useState<Post[]>(initialData);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // 初期値を true に設定
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // 1秒後に false に設定
+    }, 500);
+    return () => clearTimeout(timer); // クリーンアップ
+  }, [initialData]);
 
   const handleDelete = async (id: string) => {
     Swal.fire({
@@ -58,16 +67,17 @@ export default function PostsListPage({ initialData }: Props) {
         const url = `${process.env.NEXT_PUBLIC_API_URL}/device/${id}/`;
         try {
           await axios.delete(url);
-          // クライアントサイドでデータを更新
           setPosts((prevPosts) => prevPosts.filter((post) => post.id !== id));
           Swal.fire('削除完了', '削除が完了しました。', 'success');
-          // ページをリフレッシュしてgetServerSidePropsを再度呼び出す
           router.refresh();
         } catch (error) {
           console.error(error);
           Swal.fire('エラー', '削除に失敗しました。', 'error');
         } finally {
-          setIsLoading(false);
+          const timer = setTimeout(() => {
+            setIsLoading(false); // 1秒後に false に設定
+          }, 500);
+          return () => clearTimeout(timer); // クリーンアップ
         }
       }
     });
@@ -77,7 +87,20 @@ export default function PostsListPage({ initialData }: Props) {
     return (
       <Layout>
         <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-blue-500"></div>
+            <p className="mt-4">ロード中...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center h-screen">
+          <p className="text-red-500">{error}</p>
         </div>
       </Layout>
     );
