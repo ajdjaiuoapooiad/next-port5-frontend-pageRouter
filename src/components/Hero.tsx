@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ gradients = ['bg-gradient-to-r from-blue-60
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentGradientIndex(prevIndex => (prevIndex + 1) % gradients.length);
-    }, 10000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, [gradients]);

@@ -8,7 +8,7 @@ import React, { FormEvent, useState } from "react";
 import Layout from "@/components/Layout";
 import Head from "next/head";
 import { cn } from "@/lib/utils";
-import { saveAs } from 'file-saver'; // file-saverをインポート
+import { saveAs } from 'file-saver';
 
 const ScrapePostsList = () => {
   const [url, setUrl] = useState("");
@@ -56,8 +56,8 @@ const ScrapePostsList = () => {
       const values = headers.map(header => {
         let value = job[header as keyof Job];
         if (typeof value === 'string') {
-          value = value.replace(/"/g, '""'); // ダブルクォートをエスケープ
-          return `"${value}"`; // 値をダブルクォートで囲む
+          value = value.replace(/"/g, '""');
+          return `"${value}"`;
         }
         return value;
       });
@@ -97,8 +97,15 @@ const ScrapePostsList = () => {
             <Button
               type="submit"
               className="bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md py-2.5 px-5 transition-colors duration-200"
+              disabled={isLoading}
             >
-              Submit
+              {isLoading ? (
+                <div className="flex justify-center items-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+              ) : (
+                "Submit"
+              )}
             </Button>
           </form>
         </div>

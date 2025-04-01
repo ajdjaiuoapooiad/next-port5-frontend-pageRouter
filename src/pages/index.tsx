@@ -17,8 +17,6 @@ import TeamSection from '@/components/TeamSection'
 import ImageModal from '@/components/ImageModal'
 import { Screenshot } from '@/utils/types'
 
-
-
 const HomePage = () => {
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -33,6 +31,8 @@ const HomePage = () => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true, // 自動スクロールを有効にする
+    autoplaySpeed: 3000, // 5秒ごとに次のスクリーンショットを表示
   };
 
   const screenshots: Screenshot[] = [
@@ -128,19 +128,18 @@ const HomePage = () => {
         {/* 画像拡大モーダル */}
         <ImageModal selectedImage={selectedImage} onClose={handleCloseModal} />
 
-      <section id="pricing">
-        <Pricing />
-      </section>
+        <section id="pricing">
+          <Pricing />
+        </section>
 
+        {/* 導入事例企業 */}
+        <CompanySection />
 
-      {/* 導入事例企業 */}
-      <CompanySection />
+        {/* チーム紹介 */}
+        <TeamSection />
 
-      {/* チーム紹介 */}
-      <TeamSection />
-
-      {/* FAQセクション */}
-      <section id="faq" className="bg-gray-100 py-16">
+        {/* FAQセクション */}
+        <section id="faq" className="bg-gray-100 py-16">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">よくある質問</h2>
             <div className="space-y-4">
@@ -152,22 +151,18 @@ const HomePage = () => {
                 <h3 className="text-lg font-semibold">Q. 支払い方法は何がありますか？</h3>
                 <p className="text-gray-600">A. クレジットカード、銀行振込に対応しています。</p>
               </div>
-              
             </div>
           </div>
-      </section>
+        </section>
 
-      <Contact  />
+        <Contact />
 
-
-      <footer className="bg-gray-800 text-white text-center p-4">
-        <p>&copy; {new Date().getFullYear()} インターン面接管理アプリ</p>
-      </footer>
-
+        <footer className="bg-gray-800 text-white text-center p-4">
+          <p>&copy; {new Date().getFullYear()} インターン面接管理アプリ</p>
+        </footer>
+      </div>
     </div>
+  );
+};
 
-    </div>
-  )
-}
-
-export default HomePage
+export default HomePage;
