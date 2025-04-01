@@ -10,13 +10,13 @@ const Navbar: React.FC = () => {
     <div className="bg-gradient-to-r from-zinc-900 to-[#444] text-white shadow-xl  border border-gray-700">
       <nav className="flex justify-between items-center p-4 container mx-auto relative">
         <div className="text-xl font-bold text-shadow-md">
-          <Link
+          <a
             href="/posts"
             className="flex items-center hover:text-blue-300 transition-colors duration-300"
           >
             <Image src="/icons/test.svg" alt="Document Icon" width={24} height={24} className="mr-2" />
             インターン面接管理アプリ
-          </Link>
+          </a>
         </div>
 
         {pathname === '/' && ( // トップページでのみナビゲーションリンクを表示

@@ -87,9 +87,12 @@ const HomePage = () => {
       </Head>
 
       <div className="min-h-screen">
-        <Button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300" onClick={toggleSidebar}>
-          {isSidebarOpen ? '✕' : '☰'}
-        </Button>
+      <Button
+        className="absolute top-3 right-4 md:hidden bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300"
+        onClick={toggleSidebar}
+      >
+        {isSidebarOpen ? '✕' : '☰'}
+      </Button>
 
         <div className="grid md:grid-cols-5">
           {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
