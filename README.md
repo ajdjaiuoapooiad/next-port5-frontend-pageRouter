@@ -5,7 +5,7 @@
   <img src="https://github.com/ajdjaiuoapooiad/next-port5-frontend-pageRouter/blob/main/public/images/GIF/_-GoogleChrome2025-03-2019-23-08-ezgif.com-video-to-gif-converter%20(1).gif" alt="デモ動画" width="600" style="border-radius: 10px;">
 </p>
 
-## URL  
+## URL （API側のインフラにRenderを使用しているため初回Fetch時にしばらく時間かかります。）
 https://next-port5-frontend-page-router-jbzh.vercel.app/
 
 ## 面接官向け テスト方法 (簡易版)
