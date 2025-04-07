@@ -5,7 +5,7 @@ import Hero from '@/components/Hero';
 import Pricing from '@/components/Pricing';
 import Head from 'next/head';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -20,6 +20,7 @@ import { Screenshot } from '@/utils/types';
 const HomePage = () => {
   const [selectedImage, setSelectedImage] = useState<Screenshot | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const sliderRef = useRef<Slider>(null);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -32,7 +33,9 @@ const HomePage = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
   };
 
   const screenshots: Screenshot[] = [
@@ -76,6 +79,46 @@ const HomePage = () => {
     setSelectedImage(null);
   };
 
+  const goToNext = () => {
+    sliderRef.current?.slickNext();
+  };
+
+  const goToPrev = () => {
+    sliderRef.current?.slickPrev();
+  };
+
+  // カスタムの Next ボタンコンポーネント
+  function CustomNextArrow(props: any) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} absolute top-1/2 -translate-y-1/2 right-4 z-10 cursor-pointer bg-gray-300 bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center`}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-700">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </div>
+    );
+  }
+
+  // カスタムの Previous ボタンコンポーネント
+  function CustomPrevArrow(props: any) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={`${className} absolute top-1/2 -translate-y-1/2 left-4 z-10 cursor-pointer bg-gray-300 bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center`}
+        style={{ ...style, display: 'block' }}
+        onClick={onClick}
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-700">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-gray-100">
       <Navbar />
@@ -87,12 +130,12 @@ const HomePage = () => {
       </Head>
 
       <div className="min-h-screen">
-      <Button
-        className="absolute top-3 right-4 md:hidden bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300"
-        onClick={toggleSidebar}
-      >
-        {isSidebarOpen ? '✕' : '☰'}
-      </Button>
+        <Button
+          className="absolute top-3 right-4 md:hidden bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-600 transition-colors duration-300"
+          onClick={toggleSidebar}
+        >
+          {isSidebarOpen ? '✕' : '☰'}
+        </Button>
 
         <div className="grid md:grid-cols-5">
           {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />}
@@ -109,10 +152,10 @@ const HomePage = () => {
         </section>
 
         {/* スクリーンショットセクション */}
-        <section className="bg-white py-24 px-0 md:px-56">
+        <section className="bg-white py-24 px-0 md:px-56 relative">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-8">スクリーンショット</h2>
-            <Slider {...settings}>
+            <Slider {...settings} ref={sliderRef}>
               {screenshots.map((screenshot, index) => (
                 <div key={index} className="px-4">
                   <div className="mb-4">
@@ -128,6 +171,21 @@ const HomePage = () => {
               ))}
             </Slider>
           </div>
+          {/* 前後のボタン */}
+          {/* <div className="absolute top-1/2 -translate-y-1/2 left-4 z-10">
+            <button onClick={goToPrev} className="bg-gray-300 bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-700">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+          </div>
+          <div className="absolute top-1/2 -translate-y-1/2 right-4 z-10">
+            <button onClick={goToNext} className="bg-gray-300 bg-opacity-50 rounded-full w-8 h-8 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-700">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </div> */}
         </section>
 
         {/* 画像拡大モーダル */}
