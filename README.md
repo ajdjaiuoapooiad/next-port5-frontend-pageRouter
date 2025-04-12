@@ -24,7 +24,7 @@
 * Wantedlyの求人URLを入力し、データが正しく表示されるか確認してください。
     * **テスト用URL:**
         ```
-        [https://www.wantedly.com/projects?new=true&page=1&occupationTypes=jp__engineering&hiringTypes=internship&areas=tokyo&order=mixed](https://www.wantedly.com/projects?new=true&page=1&occupationTypes=jp__engineering&hiringTypes=internship&areas=tokyo&order=mixed)
+        https://www.wantedly.com/projects?new=true&page=1&occupationTypes=jp__engineering&hiringTypes=internship&areas=tokyo&order=mixed
         ```
     * **確認ポイント:**
         * 入力したURLの求人情報がテーブル形式で表示されるか。
